@@ -1,0 +1,22 @@
+{
+  "name": "ansi-to-html",
+  "version": "0.0.5",
+  "homepage": "https://github.com/sylvainmouquet/ansi-to-html",
+  "authors": [
+    "Jorge Eduardo Cardona G <jorgeecardona@gmail.com>",
+    "Sylvain Mouquet <sylvain.mouquet@gmail.com>"
+  ],
+  "description": "Convert ANSI to html code",
+  "main": "ansi2html.js",
+  "keywords": [
+    "ansi",
+    "ansi2html",
+    "html"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "license": "MIT"
+}

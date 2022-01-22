@@ -1,0 +1,30 @@
+{
+    "name": "ompvvsollve",
+    "authors": [
+      "Jose M Monsalve Diaz <josem@udel.edu>"
+    ],
+    "description": "OpenMP Validation and Verification project website",
+    "main": "",
+    "license": "MIT",
+    "homepage": "",
+    "private": true,
+    "ignore": [
+      "**/.*",
+      "node_modules",
+      "bower_components",
+      "test",
+      "tests"
+    ],
+    "dependencies": {
+      "angular-sanitize": "^1.6.8",
+      "angular": "angularjs#^1.6.8",
+      "angular-ui": "^0.4.0",
+      "angular-animate": "^1.6.8",
+      "bootstrap": "^3.3.7",
+      "moment": "^2.20.1",
+      "angular-touch": "^1.6.8",
+      "angular-route": "^1.6.8",
+      "angular-bootstrap": "^2.5.0",
+      "ansi-to-html": "^0.0.5"
+    }
+  }
