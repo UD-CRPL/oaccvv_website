@@ -6,7 +6,6 @@ id: "contact"
 If you have any questions, or would like to reach out to us about something, please consult the form below.
 
 
-
 <!DOCTYPE html>
 <html>
 <head>
