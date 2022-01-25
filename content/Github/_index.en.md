@@ -1,11 +1,10 @@
 ---
 title: "Github Install"
-date: 2018-12-29T11:02:05+06:00
-lastmod: 2020-01-05T10:42:26+06:00
+lastmod: 2022-01-25T10:42:26+06:00
 draft: false
 icon: "ti-package"
 # search related keywords
-keywords: ["induct", "instate"]
+keywords: ["Install", "Github"]
 type: docs
 description: "Get started with using our test suite"
 ---

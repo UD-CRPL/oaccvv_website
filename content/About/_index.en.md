@@ -1,9 +1,13 @@
 ---
 title: "About"
-date: 2018-12-29T11:02:05+06:00
+lastmod: 2022-01-25T10:42:26+06:00
+draft: false
 icon: "ti-panel"
+# search related keywords
+keywords: ["about", "who"]
+type : about
 description: "About the Project"
-type : "about"
+id: "about"
 ---
 
 

@@ -1,8 +1,14 @@
 ---
 title: "Questions?"
+lastmod: 2022-1-25T11:02:05+06:00
+draft: false
+icon: "ti-panel"
+# search related keywords
+keywords: ["Message", "Contact"]
+description: "Contact Us"
+type : docs
 id: "contact"
 ---
-
 If you have any questions, or would like to reach out to us about something, please consult the form below.
 
 
