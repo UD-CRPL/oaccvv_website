@@ -374,7 +374,7 @@
 		$scope.order = {};
 		$scope.order.reverseSort = false;
 		$scope.order.orderByField = 'Test path';
-		$scope.colsToDisplay = ['Test name', 'Test system', 'Config name', 'Compiler result', 'Runtime result'];
+		$scope.colsToDisplay = ['Test name', 'Compiler result', 'Runtime result'];
   
 		// To filter results by column
 		$scope.filters = {};
