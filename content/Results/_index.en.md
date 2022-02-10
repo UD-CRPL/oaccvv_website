@@ -18,6 +18,7 @@ Systems include:
 
 Compilers:
 * [NVDIA HPC SDK (Software Development Kit)](https://developer.nvidia.com/hpc-sdk)
+* [GCC](https://www.openacc.org/tools/gcc-for-openacc)
 
 
 #### Having issues?
