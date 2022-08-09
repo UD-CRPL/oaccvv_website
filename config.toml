@@ -4,7 +4,7 @@ baseURL = "https://crpl.cis.udel.edu/oaccvv"
 # theme
 theme = "dot-hugo"
 # site title
-title = "OpenACC V&V"
+title = "OpenACC V-V"
 # disable language
 disableLanguages = []
 # google analytics
@@ -25,43 +25,30 @@ unsafe = true
 ############################# Default Parameters ##########################
 [Params]
 # logo is for all page
-#logo = "static/images/openacclogo.jpg"
+logo = "/images/OpenACCVVdark.png"
 # logo white is for homepage logo, you can use colorful logo too...
-#logo_white = "/images/openacc_logo.png"
+logo_white = "/images/OpenACCVVwhite.png"
 # when logo is empty, it will shown your site title
 
 # OpenGraph / Twitter Card metadata
-description = "This is meta description"
-author = "Themefisher"
+description = "The OpenACC Validation and Verification Testsuite"
+author = "OpenACC V-V"
 image = "static/images/openacc_logo.svg" # this image will be used as fallback if a page has no image of its own
 
 # customize color
-primary_color = "#02007e"
+primary_color = "#122654"
 body_color = "#f9f9f9"
 text_color = "#636363"
 text_color_dark = "#242738"
 white_color = "#fff"
 light_color = "#f8f9fa"
+dark_blue = "#122654"
 
 # font family
 font_family = "lato" # Choose font family from : https://fonts.google.com/
 
 # contact form action
 contact_form_action = "#" # contact form works with : https://formspree.io
-
-email = "jarmusch@udel.edu"
-
-about_us = "<p>We are a research group within the University of Delaware that focuses on high performace and parallel computing architectures.</p>"
-copyright = "Copyright (c) 2016 - 2017, CRPL; all rights reserved."
-address = """<p><strong>Computational Research and Programming Lab</strong>
-        <br><a href="mailto:crpl-cis@udel.edu">crpl-cis@udel.edu</a>
-        <br>221 Smith Hall
-        <br>18 Amstel Avenue
-        <br>Newark, Delaware
-        <br>19717
-        <br>
-      </p>
-      """
 
 
 ############################## social links ##############################
@@ -90,13 +77,13 @@ link = "https://www.linkedin.com/in/aaron-jarmusch-1174981b1"
 languageName = "En"
 languageCode = "en-us"
 weight = 1
-copyright = "Copyright &copy; 2021 a Hugo theme by [Gethugothemes](https://gethugothemes.com/)"
+copyright = "Copyright &copy; 2022; Theme made for OpenACC V-V"
 
 # banner
 [Languages.en.params.banner]
 title = "OpenACC Verification and Validation Testsuite"
 subtitle = "Find advice and answers from our support team fast or get in touch"
-bg_image = "images/banner.jpg"
+#bg_image = "images/banner.jpg"
 placeholder = "Have a question? Just ask here or enter terms"
 
 # welcome
@@ -172,70 +159,3 @@ weight = 7
   # name = "Elements"
   # url = "elements"
   # weight = 3
-
-
-################################### Franch Language ######################
-# [Languages.fr]
-# languageName = "Fr"
-# languageCode = "fr-fr"
-# weight = 2
-# copyright = "Copyright &copy; 2021 un thème Hugo par [Gethugothemes](https://gethugothemes.com/)"
-
-# # banner
-# [Languages.fr.params.banner]
-# title = "Comment pouvons nous aider?"
-# subtitle = "Trouvez rapidement des conseils et des réponses auprès de notre équipe d'assistance ou contactez-nous."
-# bg_image = "images/banner.jpg"
-# placeholder = "Avoir une question? Il suffit de demander ici ou de saisir les termes"
-
-# # call to action
-# [Languages.fr.params.cta]
-# enable = true
-# title = "Vous n'avez pas trouvé de réponse à votre question?"
-# content = "Contactez-nous pour plus de détails sur les services supplémentaires et la tarification du travail personnalisé"
-# # call to action button
-# [Languages.fr.params.cta.button]
-# enable = true
-# label = "Contactez nous"
-# link = "contact"
-
-
-# ################## french navigation #################
-# [[Languages.fr.menu.main]]
-# name = "Accueil"
-# url = "/"
-# weight = 1
-
-# [[Languages.fr.menu.main]]
-# name = "Faq"
-# url = "faq"
-# weight = 2
-
-# [[Languages.fr.menu.main]]
-# name = "contact"
-# url = "contact"
-# weight = 3
-
-# # Dropdown menu
-# [[Languages.fr.menu.main]]
-# weight = 4
-# name = "docs"
-# hasChildren = true
-
-#   [[Languages.fr.menu.main]]
-#   parent = "docs"
-#   name = "Installation"
-#   url = "installation"
-#   weight = 1
-
-#   [[Languages.fr.menu.main]]
-#   parent = "docs"
-#   name = "Billing and Pricing"
-#   url = "billing-pricing"
-#   weight = 2
-
-#   [[Languages.fr.menu.main]]
-#   parent = "docs"
-#   name = "Features"
-#   url = "features"
-#   weight = 3

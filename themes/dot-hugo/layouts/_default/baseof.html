@@ -5,15 +5,14 @@
   <body>
     {{ if .IsHome }}
     {{ "<!-- header -->" | safeHTML }}
-    <header class="banner {{if .Site.Params.banner.bg_image}}overlay bg-cover{{else}}bg-primary{{end}}" data-background="{{ .Site.Params.banner.bg_image | absURL }}">
+    <header class="sticky-top bg-dark">
       {{ partial "navigation.html" . }}
-      {{ partialCached "banner.html" . }}
     </header>
     {{ "<!-- /header -->" | safeHTML }}
     {{ else }}
     {{ "<!-- header -->" | safeHTML }}
     <header class="shadow-bottom sticky-top bg-white">
-      {{ partialCached "navigation.html" . }}
+      {{ partial "navigation.html" . }}
     </header>
     {{ "<!-- /header -->" | safeHTML }}
     {{ end }}
