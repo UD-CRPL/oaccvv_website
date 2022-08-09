@@ -83,7 +83,7 @@ copyright = "Copyright &copy; 2022; Theme made for OpenACC V-V"
 [Languages.en.params.banner]
 title = "OpenACC Verification and Validation Testsuite"
 subtitle = "Find advice and answers from our support team fast or get in touch"
-#bg_image = "images/banner.jpg"
+bg_image = "images/banner.jpg"
 placeholder = "Have a question? Just ask here or enter terms"
 
 # welcome
