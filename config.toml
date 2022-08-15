@@ -1,10 +1,10 @@
 ################################# Default configuration ###################
 # provide your domain here
-baseURL = "https://crpl.cis.udel.edu/oaccvv"
+#baseURL = "https://crpl.cis.udel.edu/"
 # theme
 theme = "dot-hugo"
 # site title
-title = "OpenACC V-V"
+title = "OpenACC V&V"
 # disable language
 disableLanguages = []
 # google analytics
@@ -13,6 +13,8 @@ googleAnalytics = "" # paste your analytics ID here. (Ex: UA-123-45)
 # [markup.goldmark.renderer]
 # unsafe = true
  
+staticDir = ['static']
+
 languageCode = "en-us"
 
 
@@ -32,7 +34,7 @@ logo_white = "/images/OpenACCVVwhite.png"
 
 # OpenGraph / Twitter Card metadata
 description = "The OpenACC Validation and Verification Testsuite"
-author = "OpenACC V-V"
+author = "OpenACC V&V"
 image = "static/images/openacc_logo.svg" # this image will be used as fallback if a page has no image of its own
 
 # customize color
