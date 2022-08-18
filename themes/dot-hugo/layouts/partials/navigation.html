@@ -5,7 +5,7 @@
       {{ $logoWhite:= site.Params.logo_white }}
       {{ if (or $logo $logoWhite) }}
       {{ if .IsHome }}
-      <img class="img-fluid" src="{{ $logoWhite | absURL }}"
+      <img class="img-fluid" src="{{if $logoWhite }}{{ $logoWhite | relLangURL }} {{ else }} {{ $logo | absURL }}{{ end }}"
         alt="{{ site.Title }}">
       {{ else }}
       <img class="img-fluid" src="{{ $logo | absURL }}" alt="{{ site.Title }}">
