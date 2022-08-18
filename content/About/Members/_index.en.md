@@ -13,11 +13,18 @@ We thank the following people and institutions have contributed one way or anoth
 This project is funded by OpenACC. We are very grateful to OpenACC for their continued support.
 
 ## Major Contributors
-Continuous developers and maintainers of this project (Past and present)
+Continuous developers and maintainers of this project
 
+Current:
 * Aaron Jarmusch
-* Kyle Friedline
+* Aaron Liu 
+* Vaidhyanathan Ravichandran 
+* Christian Munley 
+* Daniel Horta
 * Sunita Chandrasekaran
+
+Past:
+* Kyle Friedline
 
 ## Organizations
 

@@ -1,6 +1,6 @@
 ################################# Default configuration ###################
 # provide your domain here
-#baseURL = "https://crpl.cis.udel.edu/"
+# baseURL = "https://crpl.cis.udel.edu/"
 # theme
 theme = "dot-hugo"
 # site title
