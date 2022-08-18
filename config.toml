@@ -27,9 +27,9 @@ unsafe = true
 ############################# Default Parameters ##########################
 [Params]
 # logo is for all page
-logo = "oaccvv/images/OpenACCVVdark.png"
+logo = "/images/OpenACCVVdark.png"
 # logo white is for homepage logo, you can use colorful logo too...
-logo_white = "oaccvv/images/OpenACCVVwhite.png"
+logo_white = "/images/OpenACCVVwhite.png"
 # when logo is empty, it will shown your site title
 
 # OpenGraph / Twitter Card metadata
