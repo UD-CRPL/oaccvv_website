@@ -24,13 +24,13 @@ Following, a list of publications (both internal and in peer reviewed conference
 {{% /notice %}}
 
 
-#### Having issues?
+#### Found a bug or have a comment?
 
-Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenACCV-V/issues) to report any issues that you are having with out test suite
+Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenACCV-V/issues) to report any issues that you are having with our testsuite. **Please make sure that you are logged into github with your username**. We encourage people's participation. The success of this test suite comes from the effort of the entire OpenACC community.
 
-##### Found a bug or have a comment?
+##### Get in touch?
 
-Please use the issue tracker above or any bugs or comments. **Please make sure that you are logged into github with your username**. We encourage people's participation. The success of this test suite comes from the effort of the OpenACC community.
+If you would like to help out or need to reach us. Please use the [Contact](/contact) page. 
 
 #### Note
 
