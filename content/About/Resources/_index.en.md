@@ -12,6 +12,7 @@ Before using our tests suite, please make sure that you have one or more compile
 
 Other resources include:
 
+* [OpenACC 3.2 Spec](https://www.openacc.org/sites/default/files/inline-images/Specification/OpenACC-3.2-final.pdf)
 * [OpenACC 3.1 Spec](https://www.openacc.org/sites/default/files/inline-images/Specification/OpenACC-3.1-final.pdf)
 * [OpenACC 3.0 Spec](https://www.openacc.org/sites/default/files/inline-images/Specification/OpenACC.3.0.pdf)
 * [OpenACC 2.7 Spec](https://www.openacc.org/sites/default/files/inline-files/OpenACC.2.7.pdf)

@@ -1,10 +1,10 @@
 ---
 title: "Workflow"
 lastmod: 2022-01-25T10:42:26+06:00
-weight: 2
+weight: 3
 draft: false
 # search related keywords
-keywords: [""]
+keywords: ["Workflow of the project"]
 ---
 
 Although writing tests in a test suite is important, it is not the only factor that guarantees a successful test suite. It is necessary to find a workflow and an infrastructure that guarantees correctness. These should also open up the possibilities of discussion between different members of the project and the community, in order to reduce the chance of making mistakes while creating the tests.

@@ -1,7 +1,7 @@
 ---
 title: "Members"
 lastmod: 2022-01-25T10:42:26+06:00
-weight: 3
+weight: 2
 draft: false
 # search related keywords
 keywords: [""]
