@@ -21,6 +21,8 @@ Current:
 * Vaidhyanathan Ravichandran 
 * Christian Munley 
 * Daniel Horta
+* Joy Mwaria
+* Emma Frampton
 * Sunita Chandrasekaran
 
 Past:
