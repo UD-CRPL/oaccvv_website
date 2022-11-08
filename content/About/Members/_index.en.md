@@ -15,23 +15,30 @@ This project is funded by OpenACC. We are very grateful to OpenACC for their con
 ## Major Contributors
 Continuous developers and maintainers of this project
 
-Current:
+Current Team:
 * Aaron Jarmusch
-* Aaron Liu 
-* Vaidhyanathan Ravichandran 
-* Christian Munley 
+* Aaron Liu
+* Vaidhyanathan Ravichandran
+* Christian Munley
 * Daniel Horta
 * Joy Mwaria
 * Emma Frampton
 * Sunita Chandrasekaran
 
-Past:
+Contributors:
+* Joel Denny
+* Tobias Burnus
+* Jeff Larkin
+* Mathew Colgrove
+
+Previous:
 * Kyle Friedline
 
 ## Organizations
 
 * University of Delaware
 * OpenACC
+*
 
 #### Found a bug or have a comment?
 
@@ -39,7 +46,7 @@ Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenAC
 
 ##### Get in touch?
 
-If you would like to help out or need to reach us. Please use the [Contact](/contact) page. 
+If you would like to help out or need to reach us. Please use the [Contact](/contact) page.
 
 #### Note
 

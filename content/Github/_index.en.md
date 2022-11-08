@@ -4,15 +4,15 @@ lastmod: 2022-01-25T10:42:26+06:00
 draft: false
 icon: "ti-package"
 # search related keywords
-keywords: ["Install", "Github"]
+keywords: ["Install", "GitHub"]
 type: docs
-description: "Get started with using our test suite"
+description: "Get started with using our testsuite"
 ---
-Before using our tests suite, please make sure that you have one or more compilers that support OpenACC. Current support status can be found on [Resources](/resources/)
+Before using our testsuite, please make sure that you have one or more compilers that support OpenACC. Current support status can be found on [Resources](/resources/)
 
-## Getting our test suite
+## Getting our testsuite
 
-Once you have a working compiler, you can access our [repository](https://github.com/OpenACCUserGroup/OpenACCV-V.git) and obtain all the tests that are currently available: 
+Once you have a working compiler, you can access our **[repository](https://github.com/OpenACCUserGroup/OpenACCV-V.git)** and obtain all the tests that are currently available:
 
 ```bash
 git clone https://github.com/OpenACCUserGroup/OpenACCV-V.git
@@ -27,7 +27,7 @@ nvc -fast -acc -ta=tesla <testfilename>.c; # using NVHPC SDK, compile and run a 
 python3 infrastructure.py -c=init_config.txt -o=outputfile.json # Compile all the tests with the infrastructure
 ```
 
-If everything goes well there should be a similar output to this: 
+If everything goes well there should be a similar output to this:
 
 ```
 
@@ -53,7 +53,7 @@ Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenAC
 
 ##### Get in touch?
 
-If you would like to help out or need to reach us. Please use the [Contact](/contact) page. 
+If you would like to help out or need to reach us. Please use the [Contact](/contact) page.
 
 #### Note
 
