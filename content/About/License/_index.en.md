@@ -5,7 +5,6 @@ weight: 5
 draft: false
 # search related keywords
 keywords: ["License"]
-type : "docs"
 ---
 
 Before using our tests suite, please review our license below. This license can also be found on our Github (OpenACCV&V)(https://github.com/OpenACCUserGroup/OpenACCV-V/blob/master/LICENSE)
