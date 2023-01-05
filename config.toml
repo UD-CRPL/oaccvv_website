@@ -24,7 +24,6 @@ canonifyurls = true
 [markup.goldmark.renderer]
 unsafe = true
 
-
 ############################# Default Parameters ##########################
 [Params]
 # logo is for all page
@@ -125,7 +124,7 @@ weight = 3
 
 [[Languages.en.menu.main]]
 name = "Results"
-url = "results"
+url = "archive"
 weight = 4
 
 [[Languages.en.menu.main]]
