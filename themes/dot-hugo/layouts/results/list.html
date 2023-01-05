@@ -26,34 +26,31 @@
                   <tr>
                     <td>
                       <span class="label label-primary">Compiler results</span>
-                      <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.compilerResultFilter" value="Both"> Both </label>
-                      <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.compilerResultFilter" value="Fail"> Fail </label>
-                      <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.compilerResultFilter" value="Pass"> Pass </label>
+                      <label class="radio-inline "> <input type="radio" ng-model="filters.compilerResultFilter" value="Both"> Both </label>
+                      <label class="radio-inline "> <input type="radio" ng-model="filters.compilerResultFilter" value="Fail"> Fail </label>
+                      <label class="radio-inline "> <input type="radio" ng-model="filters.compilerResultFilter" value="Pass"> Pass </label>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <span class="label label-primary">Runtime results</span>
-                      <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.runResultFilter" value="Both"> Both </label>
-                      <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.runResultFilter" value="Fail"> Fail </label>
-                      <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.runResultFilter" value="Pass"> Pass </label>
+                      <label class="radio-inline "> <input type="radio" ng-model="filters.runResultFilter" value="Both"> Both </label>
+                      <label class="radio-inline "> <input type="radio" ng-model="filters.runResultFilter" value="Fail"> Fail </label>
+                      <label class="radio-inline "> <input type="radio" ng-model="filters.runResultFilter" value="Pass"> Pass </label>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <span class="label label-primary">Compiler</span>
                       <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.compilerFilter" value="Both"> Both </label>
+                        <input type="radio" ng-model="filters.compilerFilter" value="Both"> Both 
+                      </label>
                       <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.compilerFilter" value="PGI"> PGI </label>
+                        <input type="radio" ng-model="filters.compilerFilter" value="PGI"> PGI 
+                      </label>
                       <label class="radio-inline "> 
-                        <input type="radio" ng-model="filters.compilerFilter" value="NVHPC"> NVHPC </label>
+                        <input type="radio" ng-model="filters.compilerFilter" value="NVHPC"> NVHPC 
+                      </label>
                     </td>
                   </tr>
                   <tr>
@@ -76,11 +73,13 @@
               <div class="p-lg-5 p-4 bg-white" id="content">
                 
                 
+    <?php 
+      include("/database/index.php");
+    ?>
 		<!-- Main Bar -->
       	<div class="col-lg-9">
         	<div class="p-lg-5 p-4 bg-white" id="content">
           
-
 
 			<div class="col-sm-5">
 				
