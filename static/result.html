@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta charset="utf-8">
+  <title>Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="generator" content="Hugo 0.92.0" />
+  <meta name="description" content="Results - OpenACC V&amp;V ">
+  
+  <!-- ** CSS Plugins Needed for the Project ** -->
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://crpl.cis.udel.edu/oaccvv/plugins/bootstrap/bootstrap.min.css">
+
+  <!-- themefy-icon -->
+  <link rel="stylesheet" href="https://crpl.cis.udel.edu/oaccvv/plugins/themify-icons/themify-icons.css">
+
+  <!--Favicon-->
+  <link rel="icon" href="https://crpl.cis.udel.edu/oaccvv/images/favicon.png" type="image/x-icon">
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
+  
+ 
+  <link rel="stylesheet" href="{{ $style.Permalink }}"> 
+  <link rel="stylesheet" href="themes/dot-hugo/assets/css/style.css"> 
+
+  <style>
+  :root{
+    --primary-color:#122654;
+    --body-color:#f9f9f9;
+    --text-color:#636363;
+    --text-color-dark:#242738;
+    --white-color:#fff;
+    --light-color:#f8f9fa;
+    --font-family:Lato;
+    --dark-blue:#122654;
+  }
+  </style>
+
+<!-- Main Stylesheet -->
+
+<link href="https://crpl.cis.udel.edu/oaccvv/css/style.min.css" rel="stylesheet" media="screen"/>
+  
+<!-- ** JS Plugins Needed for the Project ** -->
+
+<!-- jquiry -->
+<script src="https://crpl.cis.udel.edu/oaccvv/plugins/jquery/jquery-1.12.4.js"></script>
+
+<!-- jquary ui -->
+<script src="https://crpl.cis.udel.edu/oaccvv/plugins/jquery/jquery-ui.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://crpl.cis.udel.edu/oaccvv/plugins/bootstrap/bootstrap.min.js"></script>
+
+<!-- match-height JS -->
+<script src="https://crpl.cis.udel.edu/oaccvv/plugins/match-height/jquery.matchHeight-min.js"></script>
+
+  <!-- create /layouts/partials/overrides/header.html in your own theme or root directory to add your custom content here -->
+
+<meta name="twitter:title" content="Results"/>
+<meta name="twitter:description" content="Most recent V&amp;V execution"/>
+
+<meta property="og:title" content="Results" />
+<meta property="og:description" content="Most recent V&amp;V execution" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://crpl.cis.udel.edu/oaccvv/results/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Results"/>
+<meta name="twitter:description" content="Most recent V&amp;V execution"/>
+
+</head>
+
+  <body>
+    
+    <!-- header -->
+    <header class="shadow-bottom sticky-top bg-white">
+      <nav class="navbar navbar-expand-md navbar-light">
+  <div class="container px-2 px-md-0">
+    <a class="navbar-brand px-2" href="../">
+
+      <img class="img-fluid" src="../images/OpenACCVVdark.png" alt="OpenACC V&amp;V">
+
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation"
+      aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse text-center" id="navigation">
+      <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/about/publications/">Publications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/results">Results</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/github">Github</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/contact">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" href="https://crpl.cis.udel.edu">CRPL</a>
+          </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    </header>
+    <!-- /header -->
+
+<!-- details page -->
+<section class="single section-sm pb-0">
+	
+  <div class="container">
+	<h2 class="mb-5" id="title">Results</h2>
+    <div class="row">
+      	<div class="col-lg-3">
+			<!-- Sidebar -->
+			<table class="table-fixed">
+				<thread>
+					<tr>
+						<th>Filter results</th>
+					</tr>
+				</thread>
+				<tbody>
+					<tr>
+						<td>
+							<input type="text" class="form-control" ng-model="filters.searchFilter" placeholder="Search Results..">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span class="label label-primary">Compiler results</span>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.compilerResultFilter" value="Both"> Both </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.compilerResultFilter" value="Fail"> Fail </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.compilerResultFilter" value="Pass"> Pass </label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span class="label label-primary">Runtime results</span>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.runResultFilter" value="Both"> Both </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.runResultFilter" value="Fail"> Fail </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.runResultFilter" value="Pass"> Pass </label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span class="label label-primary">Compiler</span>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.compilerFilter" value="Both"> Both </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.compilerFilter" value="PGI"> PGI </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.compilerFilter" value="NVHPC"> NVHPC </label>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span class="label label-primary">Langauge</span>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.runtimeFilter" value="Both"> Both </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.searchFilter" value=".c"> C </label>
+							<label class="radio-inline "> 
+								<input type="radio" ng-model="filters.searchFilter" value=".F90"> Fortran </label>
+						</td>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+      	</div>
+
+		<!-- Main Bar -->
+      	<div class="col-lg-9">
+        	<div class="p-lg-5 p-4 bg-white" id="content">
+          
+
+
+			<div class="col-sm-5">
+				
+		  		<div class="row resultsContainer">
+			  <!-- Loading bar-->
+			  <div class="col-xs-3 col-xs-offset-5" ng-if="loadingResults">
+				  <div id="loadbar" style="display: block;">
+					  <div class="blockG" id="rotateG_01"></div>
+					  <div class="blockG" id="rotateG_02"></div>
+					  <div class="blockG" id="rotateG_03"></div>
+					  <div class="blockG" id="rotateG_04"></div>
+					  <div class="blockG" id="rotateG_05"></div>
+					  <div class="blockG" id="rotateG_06"></div>
+					  <div class="blockG" id="rotateG_07"></div>
+					  <div class="blockG" id="rotateG_08"></div>
+				  </div>
+			  </div>
+			  <div class="col text-center">
+			  </div>
+			  <div class="col">
+				  <uib-tabset active="active">
+					  <uib-tab index="0" heading="Results" disable="loadingResults">
+						  <!-- Results table -->
+						  <table class="table table-striped" ng-cloak="true" ng-if="!errorMessage && !loadingResults">
+							  <thead>
+								  <tr>
+									  <th> # </th>
+									  <th scope="col" ng-repeat="header in colsToDisplay">
+										  <a href="#" ng-click="order.orderByField=header; order.reverseSort = !order.reverseSort;">
+											  {{header}} <i class="glyphicon glyphicon-arrow-up" ng-show="order.reverseSort"></i><i class="glyphicon glyphicon-arrow-down" ng-show="!order.reverseSort"></i>
+										  </a>
+									  </th>
+								  </tr>
+							  </thead>
+							  <tbody>
+							  <tr ng-repeat="result in tableContent | applyResultsFilter:filters | orderBy:predicate:order.reverseSort" ng-click="openResultModal(result)">
+								  <td> {{$index + 1}} </td>
+								  <td scope="col" ng-repeat="header in colsToDisplay" ng-class="{'passTest': testPassed(result[header]), 'failTest': testFailed(result[header]), 'unknownTest': testUnknown(result[header])}">
+									  {{result[header]}} 
+								  </td>
+							  </tr>
+							  </tbody>
+						  </table>
+					  </uib-tab>
+					    
+					  </uib-tab>
+				  </uib-tabset>
+					  </div>
+				  </div>
+
+			  </div>
+		  
+
+          
+			<? include("result.php"); ?>
+          
+          <p class="post-meta border-bottom pb-3 mb-0 mt-3">Updated on 25 Jan 2022</p>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /details page -->
+
+
+    <!-- footer -->
+<footer class="section pb-4">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8 text-md-left text-center">
+       <p class="mb-md-0 mb-4">Copyright © 2022; Theme made for OpenACC V&amp;V</p>
+      </div>
+      <div class="col-md-4 text-md-right text-center">
+        <ul class="list-inline">
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- /footer -->
+
+<!-- Main Script -->
+
+<script src="https://crpl.cis.udel.edu/oaccvv/js/script.min.js"></script>
+  </body>
+
+</html>
