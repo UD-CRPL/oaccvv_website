@@ -26,7 +26,7 @@ unsafe = true
 
 [mediaTypes]
   [mediaTypes."application/x-php"]
-  suffixes = ["PHP"]
+  suffixes = ["php"]
 
 [outputFormats]
   [outputFormats.PHP]
