@@ -2,7 +2,4 @@
 title: "Results" 
 lastmod: 2022-01-25T10:42:26+06:00 
 description: "Most recent V&V execution"
-# outputs: ["php"]
 ---
-
-<?php echo 'Hello World'; ?>

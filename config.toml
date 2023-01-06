@@ -24,16 +24,6 @@ canonifyurls = true
 [markup.goldmark.renderer]
 unsafe = true
 
-[mediaTypes]
-  [mediaTypes."text/x-php"]
-  suffixes = ["php"]
-
-[outputFormats]
-  [outputFormats.phpFormat]
-    mediaType = "text/x-php"
-    isHTML = true
-    isPlainText = false
-    baseName = "index"
 
 ############################# Default Parameters ##########################
 [Params]
