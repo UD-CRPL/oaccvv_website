@@ -1,0 +1,146 @@
+{{ define "main" }}
+
+<!-- faq -->
+<section class="section pb-0">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h2 class="section-title text-primary">{{ .Title }}</h2>
+          <!-- accordion -->
+          <div id="accordion">{{ .Content }}</div>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-3">
+                <!-- Sidebar -->
+                <table class="table-fixed">
+                  <thread>
+                    <tr>
+                      <th>Filter results</th>
+                    </tr>
+                  </thread>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input type="text" class="form-control" ng-model="filters.searchFilter" placeholder="Search Results..">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="label label-primary">Compiler results</span>
+                        <label class="radio-inline "> <input type="radio" ng-model="filters.compilerResultFilter" value="Both"> Both </label>
+                        <label class="radio-inline "> <input type="radio" ng-model="filters.compilerResultFilter" value="Fail"> Fail </label>
+                        <label class="radio-inline "> <input type="radio" ng-model="filters.compilerResultFilter" value="Pass"> Pass </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="label label-primary">Runtime results</span>
+                        <label class="radio-inline "> <input type="radio" ng-model="filters.runResultFilter" value="Both"> Both </label>
+                        <label class="radio-inline "> <input type="radio" ng-model="filters.runResultFilter" value="Fail"> Fail </label>
+                        <label class="radio-inline "> <input type="radio" ng-model="filters.runResultFilter" value="Pass"> Pass </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="label label-primary">Compiler</span>
+                        <label class="radio-inline "> 
+                          <input type="radio" ng-model="filters.compilerFilter" value="Both"> Both 
+                        </label>
+                        <label class="radio-inline "> 
+                          <input type="radio" ng-model="filters.compilerFilter" value="PGI"> PGI 
+                        </label>
+                        <label class="radio-inline "> 
+                          <input type="radio" ng-model="filters.compilerFilter" value="NVHPC"> NVHPC 
+                        </label>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <span class="label label-primary">Langauge</span>
+                        <label class="radio-inline "> 
+                          <input type="radio" ng-model="filters.runtimeFilter" value="Both"> Both </label>
+                        <label class="radio-inline "> 
+                          <input type="radio" ng-model="filters.searchFilter" value=".c"> C </label>
+                        <label class="radio-inline "> 
+                          <input type="radio" ng-model="filters.searchFilter" value=".F90"> Fortran </label>
+                      </td>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+  
+              <div class="col-lg-9">
+                <div class="p-lg-5 p-4 bg-white" id="content">
+                  
+                  
+      
+          <!-- Main Bar -->
+            <div class="col-lg-9">
+              <div class="p-lg-5 p-4 bg-white" id="content">
+        <?php
+        echo "PHP is working.";
+        ?>
+              <div class="col-sm-5">
+                  
+                    <div class="row resultsContainer">
+                <!-- Loading bar-->
+                <div class="col-xs-3 col-xs-offset-5" ng-if="loadingResults">
+                    <div id="loadbar" style="display: block;">
+                        <div class="blockG" id="rotateG_01"></div>
+                        <div class="blockG" id="rotateG_02"></div>
+                        <div class="blockG" id="rotateG_03"></div>
+                        <div class="blockG" id="rotateG_04"></div>
+                        <div class="blockG" id="rotateG_05"></div>
+                        <div class="blockG" id="rotateG_06"></div>
+                        <div class="blockG" id="rotateG_07"></div>
+                        <div class="blockG" id="rotateG_08"></div>
+                    </div>
+                </div>
+                <div class="col text-center">
+                </div>
+                <div class="col">
+                    <uib-tabset active="active">
+                        <uib-tab index="0" heading="Results" disable="loadingResults">
+                            <!-- Results table -->
+                            <table class="table table-striped" ng-cloak="true" ng-if="!errorMessage && !loadingResults">
+                                <thead>
+                                    <tr>
+                                        <th> # </th>
+                                        <th scope="col" ng-repeat="header in colsToDisplay">
+                                            <a href="#" ng-click="order.orderByField=header; order.reverseSort = !order.reverseSort;">
+                                                 <i class="glyphicon glyphicon-arrow-up" ng-show="order.reverseSort"></i><i class="glyphicon glyphicon-arrow-down" ng-show="!order.reverseSort"></i>
+                                            </a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="result in tableContent | applyResultsFilter:filters | orderBy:predicate:order.reverseSort" ng-click="openResultModal(result)">
+                                    <td>  </td>
+                                    <td scope="col" ng-repeat="header in colsToDisplay" ng-class="{'passTest': testPassed(result[header]), 'failTest': testFailed(result[header]), 'unknownTest': testUnknown(result[header])}">
+                                         
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </uib-tab>
+                          
+                        </uib-tab>
+                    </uib-tabset>
+                        </div>
+                    </div>
+  
+                </div>
+            
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /faq -->
+
+{{ end }}

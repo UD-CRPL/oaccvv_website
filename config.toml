@@ -24,6 +24,16 @@ canonifyurls = true
 [markup.goldmark.renderer]
 unsafe = true
 
+[mediaTypes]
+  [mediaTypes."application/x-php"]
+  suffixes = ["php"]
+
+[outputFormats]
+  [outputFormats.PHP]
+    mediaType = "application/x-php"
+    isHTML = true
+    baseName = "index"
+
 ############################# Default Parameters ##########################
 [Params]
 # logo is for all page
