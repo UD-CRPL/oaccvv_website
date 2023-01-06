@@ -78,9 +78,7 @@
           <!-- Main Bar -->
             <div class="col-lg-9">
               <div class="p-lg-5 p-4 bg-white" id="content">
-        <?php
-        echo "PHP is working.";
-        ?>
+              {{ readFile "static/database/index.php" | safeHTML }}
               <div class="col-sm-5">
                   
                     <div class="row resultsContainer">
