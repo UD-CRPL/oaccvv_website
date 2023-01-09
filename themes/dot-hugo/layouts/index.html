@@ -40,7 +40,7 @@
     width: 5em;
     text-align: center;
     display: block;
-    color: #53777A;
+    color: #1E9EF6;
     z-index: 2;
   }
 
@@ -70,7 +70,7 @@
     width: 5em;
     height: 5em;
     border-radius: 50%;
-    border: 0.45em solid #53777A;
+    border: 0.45em solid #1E9EF6;
     /*The border is 0.35 but making it larger removes visual artifacts */
     /*background-color: #4D642D;*/
     /* for debug */
@@ -84,7 +84,7 @@
     position: absolute;
     /*needed for clipping*/
     clip: rect(0, 5em, 5em, 2.5em);
-    background-color: #53777A;
+    background-color: #1E9EF6;
     border-radius: 50%;
     width: 5em;
     height: 5em;
@@ -2030,7 +2030,7 @@
     <div class="row justify-content-center">
       <div class="text-center">
         <div>
-          <h1 style="font-size: 7rem; line-height: 1;">88%</h1>
+          <h1 style="font-size: 7rem; line-height: 1; ">88%</h1>
         </div>
 
         <div class="text-center">
@@ -2041,7 +2041,7 @@
   </div>
 
   {{ "<!-- /info -->" | safeHTML }}
-  <div class="container">
+  <div class="container px-4 py-5 bg-white shadow text-center d-block match-height" style="margin-bottom: 50px">
     <div class="row justify-content-center">
       <div class="text-center">
         <h2>OpenACC V&V Testsuite Contributions</h1>
@@ -2049,122 +2049,127 @@
       <div style="overflow: hidden; margin-top: 25px; width: 100%;">
         <div style="float: left; width: 40%;margin-left: 10%;">
           <h3 class="text-center" style="margin-right: 5%">Goals</h3>
-          <h5 class="text-center" style="margin-top: 15px;margin-right: 5%">Create unit tests to validate and verify OpenACC features
+          <h5 class="text-center" style="margin-top: 15px;margin-right: 5%">Create unit tests to validate and verify
+            OpenACC features
             </h4>
-            <h5 class="text-center" style="margin-top: 15px;margin-right: 5%">The testsuite evaluates compilers' compliance to
+            <h5 class="text-center" style="margin-top: 15px;margin-right: 5%">The testsuite evaluates compilers'
+              compliance to
               specifications</h4>
         </div>
         <div style="float: right;"></div>
         <h6 class="text-center" style="margin-bottom:15px;">Revealing ambiguities in the OpenACC Specification</h6>
         <h6 class="text-center" style="margin-bottom:15px;">Determining missing implementation of a feature</h6>
         <h6 class="text-center" style="margin-bottom:15px;">Highlighting unmentioned restriction of a feature</h6>
-        <h6 class="text-center" style="margin-bottom:15px;">Evaluating implementations for multiple target platforms</h6>
+        <h6 class="text-center" style="margin-bottom:15px;">Evaluating implementations for multiple target platforms
+        </h6>
         <h6 class="text-center" style="margin-bottom:15px;">Identifying and reporting compiler bugs</h6>
       </div>
     </div>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div style="overflow: hidden; margin-top: 25px; width: 100%;">
-          <div style="float: left; width: 25%;">
-            <div class="progress-circle over50 p81" style="margin-left: auto; margin-right: auto;">
-              <span>80.7%</span>
-              <div class="left-half-clipper">
-                <div class="first50-bar"></div>
-                <div class="value-bar"></div>
-              </div>
-            </div>
-          </div>
-          <div style="float: left; width: 25%;">
-            <div class="progress-circle over50 p84" style="margin-left: auto; margin-right: auto;" >
-              <span>84.0%</span>
-              <div class="left-half-clipper">
-                <div class="first50-bar"></div>
-                <div class="value-bar"></div>
-              </div>
-            </div>
-          </div>
-          <div style="float: left; width: 25%;">
-            <div class="progress-circle over50 p79" style="margin-left: auto; margin-right: auto;">
-              <span>79.3%</span>
-              <div class="left-half-clipper">
-                <div class="first50-bar"></div>
-                <div class="value-bar"></div>
-              </div>
-            </div>
-          </div>
-          <div style="float: left; width: 25%;">
-            <div class="progress-circle over50 p50" style="margin-left: auto; margin-right: auto;">
-              <span>50%</span>
-              <div class="left-half-clipper">
-                <div class="first50-bar"></div>
-                <div class="value-bar"></div>
-              </div>
+  </div>
+
+  <div class="container px-4 py-5 bg-white shadow text-center d-block match-height">
+    <div class="row justify-content-center">
+      <div style="overflow: hidden; width: 100%;">
+        <div style="float: left; width: 25%;">
+          <div class="progress-circle over50 p81" style="margin-left: auto; margin-right: auto;">
+            <span>80.7%</span>
+            <div class="left-half-clipper">
+              <div class="first50-bar"></div>
+              <div class="value-bar"></div>
             </div>
           </div>
         </div>
-        <div style="overflow: hidden; margin-top: 25px; width: 100%;">
-          <div style="float: left; width: 25%;">
-            <h6 class="text-center">NVIDIA nvc compiler compliance</h6>
+        <div style="float: left; width: 25%;">
+          <div class="progress-circle over50 p84" style="margin-left: auto; margin-right: auto;">
+            <span>84.0%</span>
+            <div class="left-half-clipper">
+              <div class="first50-bar"></div>
+              <div class="value-bar"></div>
+            </div>
           </div>
-          <div style="float: left; width: 25%;">
-            <h6 class="text-center">HPE Cray compiler compliance</h6>
+        </div>
+        <div style="float: left; width: 25%;">
+          <div class="progress-circle over50 p79" style="margin-left: auto; margin-right: auto;">
+            <span>79.3%</span>
+            <div class="left-half-clipper">
+              <div class="first50-bar"></div>
+              <div class="value-bar"></div>
+            </div>
           </div>
-          <div style="float: left; width: 25%;">
-            <h6 class="text-center">GNU GCC compiler compliance</h6>
+        </div>
+        <div style="float: left; width: 25%;">
+          <div class="progress-circle over50 p50" style="margin-left: auto; margin-right: auto;">
+            <span>50%</span>
+            <div class="left-half-clipper">
+              <div class="first50-bar"></div>
+              <div class="value-bar"></div>
+            </div>
           </div>
-          <div style="float: left; width: 25%;">
-            <h6 class="text-center">LLVM/Clacc compiler compliance</h6>
+        </div>
+      </div>
+      <div style="overflow: hidden; margin-top: 25px; width: 100%;">
+        <div style="float: left; width: 25%;">
+          <h6 class="text-center">NVIDIA nvc compiler compliance</h6>
+        </div>
+        <div style="float: left; width: 25%;">
+          <h6 class="text-center">HPE Cray compiler compliance</h6>
+        </div>
+        <div style="float: left; width: 25%;">
+          <h6 class="text-center">GNU GCC compiler compliance</h6>
+        </div>
+        <div style="float: left; width: 25%;">
+          <h6 class="text-center">LLVM/Clacc compiler compliance</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  {{ "<!-- topics -->" | safeHTML }}
+  <section style="padding-top: 00px;" class="section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 text-center">
+          <h2 class="section-title">{{ i18n "topics_title" | safeHTML }}</h2>
+        </div>
+        {{ "<!-- topic-item -->" | safeHTML }}
+        {{ range (where .Site.Pages "Type" "docs") }}
+        <div class="col-lg-4 col-sm-6 mb-4">
+          <a href="{{ .Permalink }}" class="px-4 py-5 bg-white shadow text-center d-block match-height">
+            {{ with .Params.icon}}<i class="{{.}} icon text-primary d-block mb-4"></i>{{end}}
+            <h3 class="mb-3 mt-0">{{ .Title }}</h3>
+            {{with .Params.description}}<p class="mb-0">{{. | markdownify}}</p>{{end}}
+          </a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ "<!-- /topics -->" | safeHTML }}
+
+  {{ if .Site.Params.cta.enable }}
+  {{ with .Site.Params.cta }}
+  {{ "<!-- call to action -->" | safeHTML }}
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section px-3 bg-white shadow text-center">
+            <h2 class="mb-4">{{ .title | markdownify }}</h2>
+            <p class="mb-4">{{ .content | markdownify }}</p>
+            {{ if .button.enable }}
+            {{ with .button }}
+            <a href="{{ .link | relLangURL }}" class="btn btn-primary">{{ .label }}</a>
+            {{ end }}
+            {{ end }}
           </div>
         </div>
       </div>
     </div>
+  </section>
+  {{ "<!-- /call to action -->" | safeHTML }}
+  {{ end }}
+  {{ end }}
 
 
-    {{ "<!-- topics -->" | safeHTML }}
-    <section style="padding-top: 00px;" class="section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-12 text-center">
-            <h2 class="section-title">{{ i18n "topics_title" | safeHTML }}</h2>
-          </div>
-          {{ "<!-- topic-item -->" | safeHTML }}
-          {{ range (where .Site.Pages "Type" "docs") }}
-          <div class="col-lg-4 col-sm-6 mb-4">
-            <a href="{{ .Permalink }}" class="px-4 py-5 bg-white shadow text-center d-block match-height">
-              {{ with .Params.icon}}<i class="{{.}} icon text-primary d-block mb-4"></i>{{end}}
-              <h3 class="mb-3 mt-0">{{ .Title }}</h3>
-              {{with .Params.description}}<p class="mb-0">{{. | markdownify}}</p>{{end}}
-            </a>
-          </div>
-          {{ end }}
-        </div>
-      </div>
-    </section>
-    {{ "<!-- /topics -->" | safeHTML }}
-
-    {{ if .Site.Params.cta.enable }}
-    {{ with .Site.Params.cta }}
-    {{ "<!-- call to action -->" | safeHTML }}
-    <section>
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <div class="section px-3 bg-white shadow text-center">
-              <h2 class="mb-4">{{ .title | markdownify }}</h2>
-              <p class="mb-4">{{ .content | markdownify }}</p>
-              {{ if .button.enable }}
-              {{ with .button }}
-              <a href="{{ .link | relLangURL }}" class="btn btn-primary">{{ .label }}</a>
-              {{ end }}
-              {{ end }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    {{ "<!-- /call to action -->" | safeHTML }}
-    {{ end }}
-    {{ end }}
-
-
-    {{ end }}
+  {{ end }}
