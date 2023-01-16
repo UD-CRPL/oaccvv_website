@@ -22,7 +22,7 @@ Systems include:
 
 Compilers:
 * [NVDIA HPC SDK (Software Development Kit)](https://developer.nvidia.com/hpc-sdk)
-* [GCC](https://www.openacc.org/tools/gcc-for-openacc)
+* [GNU GCC](https://www.openacc.org/tools/gcc-for-openacc)
 * [HPE CRAY FTN](https://www.hpe.com/us/en/home.html)
 * [Clacc - Clang/LLVM Extension](https://www.exascaleproject.org/highlight/clacc-an-open-source-openacc-compiler-and-source-code-translation-project/)
 
