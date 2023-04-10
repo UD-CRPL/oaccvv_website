@@ -179,3 +179,133 @@
                           </select>
                         </td>
                     </tbody>
+                  </table>
+                </div>
+              </div>
+            <!-- </div></div></section> -->
+               <!-- <table data-toggle="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Source Code</th>
+                      <th>Test Name</th>
+                      <th>Test System</th>
+                      <th>Compiler Name</th>
+                      <th>Compiler Result</th>
+                      <th>Runtime Result</th>
+                    </tr>
+                  </thead>
+                  <tbody id="resultdiv" style="padding-top: 50px;">
+                   // <div id="resultdiv"></div>
+                  </tbody>
+                </table> -->
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#summary" role="tab">Summary</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#results" role="tab">Results</a>
+                  </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane" id="results" role="tabpanel">
+                    <table data-toggle="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Source Code</th>
+                          <th>Test Name</th>
+                          <th>Test System</th>
+                          <th>Compiler Name</th>
+                          <th>Compiler Result</th>
+                          <th>Runtime Result</th>
+                        </tr>
+                      </thead>
+                      <tbody id="resultdiv" style="padding-top: 50px;">
+                        <!-- <div id="resultdiv"></div> -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="tab-pane active" id="summary" role="tabpanel">
+                    <table data-toggle="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Test Name</th>
+                          <th>System Name</th>
+                          <th>NVC 21_11 CR</th>
+                          <th>NVC 21_11 RR</th>
+                          <th>GCC 11_2 CR</th>
+                          <th>GCC 11_2 RR</th>
+                          <th>Cray 15_0_0 CR</th>
+                          <th>Cray 15_0_0 RR</th>
+                          <th>Clacc #4879e9 CR</th>
+                          <th>Clacc #4879e9 RR</th>
+                        </tr>
+                      </thead>
+                      <tbody id="summarydiv" style="padding-top: 50px;">
+                         <!-- <div id="resultdiv"></div>  -->
+                      </tbody> 
+                    </table> 
+                  <!-- </div> -->
+                </div>
+
+                <script>
+                  function updateResult() {
+                    // Get the values of all four dropdowns
+                    var name = document.getElementById("name").value;
+                    var compiler_results = document.getElementById("Compiler_Results").value;
+                    var runtime_results = document.getElementById("Runtime_Results").value;
+                    var compiler = document.getElementById("Compiler_Name").value;
+                    var language = document.getElementById("Language").value;
+                    var System = document.getElementById("System").value;
+                    // $('.nav-tabs a').on('shown.bs.tab', function(event){
+                    var x = $('.nav-tabs .active').text();         // active tab
+                    if (x == "Summary") {
+                      $.get('results.php?tab=summary&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
+                      // Update the content of the resultdiv with the retrieved data
+                      console.log('compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
+                      $('#summarydiv').html(data);
+                    }); 
+                    } else {
+                      $.get('results.php?tab=results&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
+                      // Update the content of the resultdiv with the retrieved data
+                      console.log('compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
+                      $('#resultdiv').html(data);
+                    }); 
+                    }
+                  // });
+                  }
+                  //$('.collapse').on('show.bs.collapse', function () {
+                  //  $('.collapse.in').collapse('hide');
+                  //});
+                  // $('.nav-tabs .active').on('shown.bs.tab', function(event){
+                  //   updateResult();
+                  // });
+                  $('.nav-tabs a').on('shown.bs.tab', function (e) {
+                    updateResult();
+                  });
+
+                  updateResult();
+                </script>
+                <!-- footer -->
+                <footer class="section pb-4">
+                  <div class="container">
+                    <div class="row align-items-center">
+                      <div class="col-md-8 text-md-left text-center">
+                        <p class="mb-md-0 mb-4">Copyright © 2022; Theme made for OpenACC V&amp;V</p>
+                      </div>
+                      <div class="col-md-4 text-md-right text-center">
+                        <ul class="list-inline"></ul>
+                      </div>
+                    </div>
+                  </div>
+                </footer>
+                <!-- /footer -->
+                <!-- Main Script -->
+                <script src="https://crpl.cis.udel.edu/oaccvv/js/script.min.js"></script>
+  </body>
+</html>
