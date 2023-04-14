@@ -143,7 +143,7 @@ function summary_html($my_dict) {
 //             <td>' . $compilerresult . '</td>
 //             <td>' . $runtimeresult . '</td>
 // </tr>';
-$compilers = array('nvc 21_11', 'GCC 11_2', 'Cray 15_0_0', 'Clacc #4879e9');
+$compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 15_0_0', 'Clacc #4879e9');
 
 // generate the HTML table header
 // echo '<div class="tab-pane active" id="summary" role="tabpanel">
