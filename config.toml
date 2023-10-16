@@ -124,7 +124,7 @@ weight = 3
 
 [[Languages.en.menu.main]]
 name = "Results"
-url = "results"
+url = "archive"
 weight = 4
 
 [[Languages.en.menu.main]]

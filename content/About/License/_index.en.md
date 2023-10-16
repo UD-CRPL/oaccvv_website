@@ -25,15 +25,3 @@ CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
 PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
 LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-#### Found a bug or have a comment?
-
-Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenACCV-V/issues) to report any issues that you are having with our testsuite. **Please make sure that you are logged into github with your username**. We encourage people's participation. The success of this test suite comes from the effort of the entire OpenACC community.
-
-##### Get in touch?
-
-If you would like to help out or need to reach us. Please use the [Contact](/contact) page. 
-
-#### Note
-
-Thanks for contributing to our project. By contributing to our project you agree to our [license agreement](/license) and allow us to use and distribute your code.

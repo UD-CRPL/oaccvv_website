@@ -21,15 +21,3 @@ Our tests cover important features of OpenACC that we believe are testable. Open
 Each tests can either *PASS* or *FAIL*. If it passes, no further action is performed during development, the test is then reviewed and added to our testsuite. But if it fails, it is open to our community one more time for a final discussion. If this discussion leads to the test being correct, we add it to the master branch (current release branch) of our repository to make it available to our final V&V testing suite. If it determined to be wrong, the comments and reason are gather and the tests goes back to development and the cycle starts again.
 
 Sometimes testing of features is not possible given the available API and directives available to us. In such cases the logic of the test will determine a pass or fail, until the feature is available.
-
-#### Found a bug or have a comment?
-
-Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenACCV-V/issues) to report any issues that you are having with our testsuite. **Please make sure that you are logged into github with your username**. We encourage people's participation. The success of this test suite comes from the effort of the entire OpenACC community.
-
-##### Get in touch?
-
-If you would like to help out or need to reach us. Please use the [Contact](/contact) page.
-
-#### Note
-
-Thanks for contributing to our project. By contributing to our project you agree to our [license agreement](/license) and allow us to use and distribute your code.
