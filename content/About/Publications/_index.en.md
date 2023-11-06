@@ -9,7 +9,7 @@ Following, a list of publications (both internal and in peer reviewed conference
 ## Posters:
 
 {{% notice info%}}
-[Using IU Jetstream for OpenMP offloading and OpenACC testsuites](content/About/Publications/_index.files/2021JetstreamREUPosterAaron_Nolan.pdf)\
+[Using IU Jetstream for OpenMP offloading and OpenACC testsuites](_index.files/2021JetstreamREUPosterAaron_Nolan.pdf)\
 \
 [Analysis of Validating and Verifying OpenACC Compilers 3.0 and Above.](https://arxiv.org/abs/2208.13071)
 {{% /notice %}}
@@ -25,7 +25,7 @@ Following, a list of publications (both internal and in peer reviewed conference
 ## Technical Report
 
 {{% notice info%}}
-[LLM4VV: Developing LLM-Driven Testsuite for Compiler Validation](content/About/Publications/_index.files/Developing_LLM_Driven_Testsuite_for_Compiler_Validation_FGCS_JOURNAL_Oct2023.pdf)
+[LLM4VV: Developing LLM-Driven Testsuite for Compiler Validation](_index.files/Developing_LLM_Driven_Testsuite_for_Compiler_Validation_FGCS_JOURNAL_Oct2023.pdf)
 {{% /notice %}}
 
 ## Slides
