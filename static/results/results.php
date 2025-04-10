@@ -1,5 +1,5 @@
 <?php
-$dbhost = "crpl.cis.udel.edu";
+$dbhost = "127.0.0.1";
 $dbuser = "oaccvv";
 $dbpass = "openaccresults";
 $db = "OpenACC";
