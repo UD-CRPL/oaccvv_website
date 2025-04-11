@@ -17,12 +17,7 @@ Continuous developers and maintainers of this project
 
 Current Team:
 * Aaron Jarmusch
-* Aaron Liu
-* Vaidhyanathan Ravichandran
-* Christian Munley
-* Daniel Horta
-* Joy Mwaria
-* Emma Frampton
+* Zackariah Sollenberger
 * Sunita Chandrasekaran
 
 Contributors:
@@ -30,9 +25,16 @@ Contributors:
 * Tobias Burnus
 * Jeff Larkin
 * Mathew Colgrove
+* Christian Munley
 
 Previous:
 * Kyle Friedline
+* Jay Patel
+* Aaron Liu
+* Vaidhyanathan Ravichandran
+* Daniel Horta
+* Joy Mwaria
+* Emma Frampton
 
 ## Organizations
 
