@@ -174,7 +174,14 @@ function summary_html($my_dict, $compiler_filter) {
             
             $body .= "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
             foreach ($compilers as $compiler) {
-                $body .= "<td>{$combined_results[$compiler]}</td>";
+                // Add color styling based on result value
+                if ($combined_results[$compiler] == 'Pass') {
+                    $body .= "<td style='background-color: #d4edda; color: #155724; font-weight: bold;'>{$combined_results[$compiler]}</td>";
+                } elseif ($combined_results[$compiler] == 'Fail') {
+                    $body .= "<td style='background-color: #f8d7da; color: #721c24; font-weight: bold;'>{$combined_results[$compiler]}</td>";
+                } else {
+                    $body .= "<td>{$combined_results[$compiler]}</td>";
+                }
             }
             $body .= "</tr>";
             
