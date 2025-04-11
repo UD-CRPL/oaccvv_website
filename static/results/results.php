@@ -59,8 +59,7 @@ if (!$conn) {
     $sql .= "AND runtime_result = '$runtime_results_html' ";
     }
     if ($system_html == "All") {
-    $sql .= "AND (system_name = 'Perlmutter' OR system_name = 'DARWIN' OR system_name = 'Frontier') ORDER BY test_name ASC;";
-    // $sql .= "AND (system_name = 'Perlmutter' OR system_name = 'DARWIN' OR system_name = 'Summit' OR system_name = 'Crusher') ORDER BY test_name ASC;";
+    $sql .= "AND (system_name = 'Perlmutter' OR system_name = 'DARWIN' OR system_name = 'Summit' OR system_name = 'Crusher') ORDER BY test_name ASC;";
     } else {
     $sql .= "AND system_name LIKE '$system_html'; ";
     }// Execute the SQL query here
@@ -84,122 +83,116 @@ if (!$result) {
 }
 
 function results_html($no, $demono, $test_name, $compiler, $system, $compilerresult, $runtimeresult, $command, $errors, $output, $compilation_runtime, $source_code) {
-    // Add color styling to compiler result cell
-    $compiler_cell = "";
-    if ($compilerresult == "Pass") {
-        $compiler_cell = "<td style='background-color: #d4edda; color: #155724; font-weight: bold;'>{$compilerresult}</td>";
-    } else {
-        $compiler_cell = "<td style='background-color: #f8d7da; color: #721c24; font-weight: bold;'>{$compilerresult}</td>";
-    }
-    
-    // Add color styling to runtime result cell
-    $runtime_cell = "";
-    if ($runtimeresult == "Pass") {
-        $runtime_cell = "<td style='background-color: #d4edda; color: #155724; font-weight: bold;'>{$runtimeresult}</td>";
-    } else {
-        $runtime_cell = "<td style='background-color: #f8d7da; color: #721c24; font-weight: bold;'>{$runtimeresult}</td>";
-    }
-    
     echo '<tr data-toggle="collapse" data-target="' . "#" . $demono . '" class="accordion-toggle">
 <td>' . $no . '</td>
  <td><button class="btn btn-default btn-xs"><span class="ti-split-v-alt"></span></button></td>
               <td>' . $test_name . '</td>
               <td>' . $system . '</td>
               <td>' . $compiler . '</td>
-              ' . $compiler_cell . '
-              ' . $runtime_cell . '
+              <td>' . $compilerresult . '</td>
+              <td>' . $runtimeresult . '</td>
 </tr>
 
         <tr>
             <td colspan="12" class="hiddenRow" style="padding: 0 !important;">
               <div class="accordian-body collapse" id="' . $demono . '">
               <table class="table table-striped">
+
+
               <tbody>
-                <tr>
-                   <td> Compilation Command </td>
-                   <td> ' . $command . ' </td>
-                </tr>
-                <tr>
-                   <td> Compilation Error </td>
-                   <td>' . $errors . '</td>
-                </tr>
-                <tr>
-                   <td> Compilation Runtime </td>
-                   <td>' . $compilation_runtime . '</td>
-                </tr>
-                <tr>
-                   <td> Segment Contents </td>
-                   <td><a href="' . $source_code . '" target="_blank">' . $source_code . '</a></td>
-                </tr>
-              </tbody>
-              </table>
+
+<tr>
+               <td> Compilation Command </td>
+               <td> ' . $command . ' </td>
+               </tr>
+            <tr>
+           <td> Compilation Error </td>
+           <td>' . $errors . '</td>
+           </tr>
+ <tr>
+                 <td> Compilation Runtime </td>
+                 <td>' . $compilation_runtime . '</td>
+                 </tr>
+           <tr>
+              <td> Segment Contents </td>
+              <td><a href="' . $source_code . '" target="_blank">' . $source_code . '</td>
+              </tr>
+
+                    <tr>
+
               </div>
-            </td>
-        </tr>';
+          </td>
+        </tr>
+                      </tbody>
+                </table>
+
+              </div>
+          </td>
+        </tr>
+
+';
+
 }
 
-function summary_html($my_dict, $compiler_filter) {
-    // Determine which compilers to display based on filter
-    $all_compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
-    
-    // If a specific compiler is selected, only show that one
-    $compilers = ($compiler_filter != "All") 
-        ? array($compiler_filter) 
-        : $all_compilers;
-    
-    // Generate header HTML
-    $header = "<tr><th>#</th><th>Test Name</th><th>System Name</th>";
-    foreach ($compilers as $compiler) {
-        $header .= "<th>{$compiler}</th>";
-    }
-    $header .= "</tr>";
-    
-    // Generate body HTML
-    $body = "";
-    $serial_number = 1;
-    foreach ($my_dict as $test_name => $system_data) {
-        foreach ($system_data as $system_name => $compiler_data) {
-            $combined_results = array();
-            
-            foreach ($compilers as $compiler) {
-                if (isset($compiler_data[$compiler])) {
-                    // Only show "Pass" if both CR and RR pass, otherwise show "Fail"
-                    if ($compiler_data[$compiler]['compiler_result'] == 'Pass' && 
-                        $compiler_data[$compiler]['runtime_result'] == 'Pass') {
-                        $combined_results[$compiler] = 'Pass';
-                    } else {
-                        $combined_results[$compiler] = 'Fail';
-                    }
-                } else {
-                    $combined_results[$compiler] = '-';
-                }
+function summary_html($my_dict) {
+//     echo '<tr data-toggle="collapse" class="accordion-toggle">
+//             <td>' . $no . '</td>
+//             <td>' . $test_name . '</td>
+//             <td>' . $system . '</td>
+//             <td>' . $compiler . '</td>
+//             <td>' . $compilerresult . '</td>
+//             <td>' . $runtimeresult . '</td>
+// </tr>';
+$compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 15_0_0', 'Clacc #4879e9');
+
+// generate the HTML table header
+// echo '<div class="tab-pane active" id="summary" role="tabpanel">
+//         <table data-toggle="table">
+//             <thead>
+//                 <tr><table><tr><th>#</th><th>Test Name</th><th>System Name</th>';
+//                 foreach ($compilers as $compiler) {
+//                     echo "<th>{$compiler} CR</th><th>{$compiler} RR</th>";
+//                 }
+//         echo "</tr></thead>";
+
+// initialize a counter for the serial number column
+$serial_number = 1;
+// iterate through the $my_dict array and populate the table rows
+foreach ($my_dict as $test_name => $system_data) {
+    foreach ($system_data as $system_name => $compiler_data) {
+        // initialize arrays to store the results for each compiler
+        $compiler_results = array();
+        $runtime_results = array();
+        
+        // extract the results for each compiler and store in the arrays
+        foreach ($compilers as $compiler) {
+            if (isset($compiler_data[$compiler])) {
+                $compiler_results[$compiler] = $compiler_data[$compiler]['compiler_result'];
+                $runtime_results[$compiler] = $compiler_data[$compiler]['runtime_result'];
+            } else {
+                $compiler_results[$compiler] = '-';
+                $runtime_results[$compiler] = '-';
             }
-            
-            $body .= "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
-            foreach ($compilers as $compiler) {
-                // Add color styling based on result value
-                if ($combined_results[$compiler] == 'Pass') {
-                    $body .= "<td style='background-color: #d4edda; color: #155724; font-weight: bold;'>{$combined_results[$compiler]}</td>";
-                } elseif ($combined_results[$compiler] == 'Fail') {
-                    $body .= "<td style='background-color: #f8d7da; color: #721c24; font-weight: bold;'>{$combined_results[$compiler]}</td>";
-                } else {
-                    $body .= "<td>{$combined_results[$compiler]}</td>";
-                }
-            }
-            $body .= "</tr>";
-            
-            $serial_number++;
         }
+        
+        // insert the data into HTML table cells using the echo statement
+        echo "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
+        foreach ($compilers as $compiler) {
+            echo "<td>{$compiler_results[$compiler]}</td><td>{$runtime_results[$compiler]}</td>";
+        }
+        echo "</tr>";
+        
+        // increment the serial number counter
+        $serial_number++;
     }
-    
-    // Return both header and body as JSON
-    return json_encode(array(
-        'header' => $header,
-        'body' => $body
-    ));
+}
+
+// close the HTML table
+// ec
 }
 
 if ($tab == "summary") {
+    // One or more variables are empty, so don't execute the SQL query
     $number = 1;
     $my_dict = array();
     while ($row = $result->fetch_assoc()) {
@@ -221,11 +214,11 @@ if ($tab == "summary") {
             'compiler_result' => $compilerresult,
             'runtime_result' => $runtimeresult
         );
+        // print_r($my_dict[$test_name][$system]);
         $number++;
     }
     
-    // Pass the compiler filter to the summary_html function
-    echo summary_html($my_dict, $compiler_html);
+    summary_html($my_dict);
 } elseif($tab == "results") {
     $number = 1;
     while ($row = $result->fetch_assoc()) {
