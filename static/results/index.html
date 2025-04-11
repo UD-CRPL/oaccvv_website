@@ -81,7 +81,7 @@
         <div class="alert alert-info alert-sm">These results were last updated April 2025</div>
         <div class="alert alert-info alert-sm">To get a quick overview of the results, please refer to the Summary tab. For in-depth analysis, please check the Results tab. Filtering works only on the Results tab.</div>
 
-        <!-- Tabs -->
+        <!-- Tab Navigation -->
         <ul class="nav nav-tabs" role="tablist">
           <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#summary">Summary</a></li>
           <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#results">Results</a></li>
@@ -107,14 +107,15 @@
         </div>
 
         <!-- Tab Content -->
-        <div class="tab-pane active" id="summary" role="tabpanel">
-          <table class="table table-striped">
-            <thead id="summaryheader">
-              <tr><th>#</th><th>Test Name</th><th>System Name</th><th>NVC 23_1</th><th>GCC 12_2</th><th>Cray 19_0_0</th><th>Clacc #4879e9</th></tr>
-            </thead>
-            <tbody id="summarydiv"></tbody>
-          </table>
-        </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="summary" role="tabpanel">
+            <table class="table table-striped">
+              <thead id="summaryheader">
+                <tr><th>#</th><th>Test Name</th><th>System Name</th><th>NVC 23_1</th><th>GCC 12_2</th><th>Cray 19_0_0</th><th>Clacc #4879e9</th></tr>
+              </thead>
+              <tbody id="summarydiv"></tbody>
+            </table>
+          </div>
           <div class="tab-pane" id="results" role="tabpanel">
             <table class="table table-striped">
               <thead><tr><th>#</th><th>Source Code</th><th>Test Name</th><th>Test System</th><th>Compiler Name</th><th>Compiler Result</th><th>Runtime Result</th></tr></thead>
@@ -145,30 +146,41 @@
         const compiler = document.getElementById("Compiler_Name").value;
         const language = document.getElementById("Language").value;
         const system = document.getElementById("System").value;
-        const activeTab = document.querySelector('.nav-tabs .active').textContent;
-
-        const tab = activeTab === "Summary" ? "summary" : "results";
+        
+        // Get the active tab ID directly
+        const activeTabId = document.querySelector('.tab-pane.active').id;
+        const tab = activeTabId;
         const target = tab === "summary" ? "#summarydiv" : "#resultdiv";
-
+    
         const url = `results.php?tab=${tab}&name=${name}&compiler_results=${compiler_results}&runtime_results=${runtime_results}&compiler_name=${compiler}&language=${language}&test_system=${system}`;
-
+    
         fetch(url).then(res => res.text()).then(data => {
           if (tab === "summary") {
-            // Parse JSON response containing header and body
-            const response = JSON.parse(data);
-            document.querySelector("#summaryheader").innerHTML = response.header;
-            document.querySelector(target).innerHTML = response.body;
+            try {
+              // Parse JSON response containing header and body
+              const response = JSON.parse(data);
+              document.querySelector("#summaryheader").innerHTML = response.header;
+              document.querySelector(target).innerHTML = response.body;
+            } catch (e) {
+              console.error("Error parsing summary data:", e);
+              document.querySelector(target).innerHTML = "Error loading summary data";
+            }
           } else {
             document.querySelector(target).innerHTML = data;
           }
         });
       }
-
-      document.querySelectorAll('.nav-tabs a').forEach(tab => {
-        tab.addEventListener('shown.bs.tab', updateResult);
+    
+      // Use jQuery for Bootstrap tab events
+      $(document).ready(function() {
+        // Initial load of default tab
+        updateResult();
+        
+        // Handle tab switching
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+          updateResult();
+        });
       });
-
-      updateResult();
     </script>
   </body>
 </html>
