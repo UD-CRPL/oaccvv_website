@@ -83,14 +83,24 @@ if (!$result) {
 }
 
 function results_html($no, $demono, $test_name, $compiler, $system, $compilerresult, $runtimeresult, $command, $errors, $output, $compilation_runtime, $source_code) {
+    // Add color styling for compiler and runtime results
+    $compilerresult_styled = $compilerresult == "Pass" ? 
+        '<span style="color: green; font-weight: bold;">' . $compilerresult . '</span>' : 
+        '<span style="color: red; font-weight: bold;">' . $compilerresult . '</span>';
+    
+    $runtimeresult_styled = $runtimeresult == "Pass" ? 
+        '<span style="color: green; font-weight: bold;">' . $runtimeresult . '</span>' : 
+        '<span style="color: red; font-weight: bold;">' . $runtimeresult . '</span>';
+
     echo '<tr data-toggle="collapse" data-target="' . "#" . $demono . '" class="accordion-toggle">
 <td>' . $no . '</td>
  <td><button class="btn btn-default btn-xs"><span class="ti-split-v-alt"></span></button></td>
               <td>' . $test_name . '</td>
               <td>' . $system . '</td>
               <td>' . $compiler . '</td>
-              <td>' . $compilerresult . '</td>
-              <td>' . $runtimeresult . '</td>
+              <td>' . $compilerresult_styled . '</td>
+              <td>' . $runtimeresult_styled . '</td>
+</tr>  <td>' . $runtimeresult . '</td>
 </tr>
 
         <tr>
@@ -167,8 +177,15 @@ foreach ($my_dict as $test_name => $system_data) {
         // extract the results for each compiler and store in the arrays
         foreach ($compilers as $compiler) {
             if (isset($compiler_data[$compiler])) {
-                $compiler_results[$compiler] = $compiler_data[$compiler]['compiler_result'];
-                $runtime_results[$compiler] = $compiler_data[$compiler]['runtime_result'];
+                $result = $compiler_data[$compiler]['compiler_result'];
+                $compiler_results[$compiler] = $result == "Pass" ? 
+                    '<span style="color: green; font-weight: bold;">' . $result . '</span>' : 
+                    '<span style="color: red; font-weight: bold;">' . $result . '</span>';
+                
+                $result = $compiler_data[$compiler]['runtime_result'];
+                $runtime_results[$compiler] = $result == "Pass" ? 
+                    '<span style="color: green; font-weight: bold;">' . $result . '</span>' : 
+                    '<span style="color: red; font-weight: bold;">' . $result . '</span>';
             } else {
                 $compiler_results[$compiler] = '-';
                 $runtime_results[$compiler] = '-';
@@ -185,6 +202,7 @@ foreach ($my_dict as $test_name => $system_data) {
         // increment the serial number counter
         $serial_number++;
     }
+}
 }
 
 // close the HTML table
