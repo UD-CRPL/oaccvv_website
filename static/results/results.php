@@ -84,55 +84,58 @@ if (!$result) {
 }
 
 function results_html($no, $demono, $test_name, $compiler, $system, $compilerresult, $runtimeresult, $command, $errors, $output, $compilation_runtime, $source_code) {
+    // Add color styling to compiler result cell
+    $compiler_cell = "";
+    if ($compilerresult == "Pass") {
+        $compiler_cell = "<td style='background-color: #d4edda; color: #155724; font-weight: bold;'>{$compilerresult}</td>";
+    } else {
+        $compiler_cell = "<td style='background-color: #f8d7da; color: #721c24; font-weight: bold;'>{$compilerresult}</td>";
+    }
+    
+    // Add color styling to runtime result cell
+    $runtime_cell = "";
+    if ($runtimeresult == "Pass") {
+        $runtime_cell = "<td style='background-color: #d4edda; color: #155724; font-weight: bold;'>{$runtimeresult}</td>";
+    } else {
+        $runtime_cell = "<td style='background-color: #f8d7da; color: #721c24; font-weight: bold;'>{$runtimeresult}</td>";
+    }
+    
     echo '<tr data-toggle="collapse" data-target="' . "#" . $demono . '" class="accordion-toggle">
 <td>' . $no . '</td>
  <td><button class="btn btn-default btn-xs"><span class="ti-split-v-alt"></span></button></td>
               <td>' . $test_name . '</td>
               <td>' . $system . '</td>
               <td>' . $compiler . '</td>
-              <td>' . $compilerresult . '</td>
-              <td>' . $runtimeresult . '</td>
+              ' . $compiler_cell . '
+              ' . $runtime_cell . '
 </tr>
 
         <tr>
             <td colspan="12" class="hiddenRow" style="padding: 0 !important;">
               <div class="accordian-body collapse" id="' . $demono . '">
               <table class="table table-striped">
-
-
               <tbody>
-
-<tr>
-               <td> Compilation Command </td>
-               <td> ' . $command . ' </td>
-               </tr>
-            <tr>
-           <td> Compilation Error </td>
-           <td>' . $errors . '</td>
-           </tr>
- <tr>
-                 <td> Compilation Runtime </td>
-                 <td>' . $compilation_runtime . '</td>
-                 </tr>
-           <tr>
-              <td> Segment Contents </td>
-              <td><a href="' . $source_code . '" target="_blank">' . $source_code . '</td>
-              </tr>
-
-                    <tr>
-
+                <tr>
+                   <td> Compilation Command </td>
+                   <td> ' . $command . ' </td>
+                </tr>
+                <tr>
+                   <td> Compilation Error </td>
+                   <td>' . $errors . '</td>
+                </tr>
+                <tr>
+                   <td> Compilation Runtime </td>
+                   <td>' . $compilation_runtime . '</td>
+                </tr>
+                <tr>
+                   <td> Segment Contents </td>
+                   <td><a href="' . $source_code . '" target="_blank">' . $source_code . '</a></td>
+                </tr>
+              </tbody>
+              </table>
               </div>
-          </td>
-        </tr>
-                      </tbody>
-                </table>
-
-              </div>
-          </td>
-        </tr>
-
-';
-
+            </td>
+        </tr>';
 }
 
 function summary_html($my_dict, $compiler_filter) {
