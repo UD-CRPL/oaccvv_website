@@ -136,7 +136,7 @@ function results_html($no, $demono, $test_name, $compiler, $system, $compilerres
 }
 
 function summary_html($my_dict) {
-    $compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 15_0_0', 'Clacc #4879e9');
+    $compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
 
     // initialize a counter for the serial number column
     $serial_number = 1;
