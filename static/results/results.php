@@ -92,15 +92,15 @@ function results_html($no, $demono, $test_name, $compiler, $system, $compilerres
         '<span style="color: green; font-weight: bold;">' . $runtimeresult . '</span>' : 
         '<span style="color: red; font-weight: bold;">' . $runtimeresult . '</span>';
 
-    echo '<tr data-toggle="collapse" data-target="' . "#" . $demono . '" class="accordion-toggle">
-<td>' . $no . '</td>
- <td><button class="btn btn-default btn-xs"><span class="ti-split-v-alt"></span></button></td>
-              <td>' . $test_name . '</td>
-              <td>' . $system . '</td>
-              <td>' . $compiler . '</td>
-              <td>' . $compilerresult . '</td>
-              <td>' . $runtimeresult . '</td>
-</tr>
+        echo '<tr data-toggle="collapse" data-target="' . "#" . $demono . '" class="accordion-toggle">
+        <td>' . $no . '</td>
+         <td><button class="btn btn-default btn-xs"><span class="ti-split-v-alt"></span></button></td>
+                      <td>' . $test_name . '</td>
+                      <td>' . $system . '</td>
+                      <td>' . $compiler . '</td>
+                      <td>' . $compilerresult_styled . '</td>
+                      <td>' . $runtimeresult_styled . '</td>
+        </tr>
 
         <tr>
             <td colspan="12" class="hiddenRow" style="padding: 0 !important;">
