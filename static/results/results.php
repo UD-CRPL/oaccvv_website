@@ -4,7 +4,15 @@ $dbuser = "oaccvv";
 $dbpass = "openaccresults";
 $db = "OpenACC";
 
-// Sanitize input parameters
+// Create connection first
+$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
+
+// Check connection
+if (!$conn) {
+    die('<tr><td colspan="7" class="text-center text-danger">Connection failed: ' . mysqli_connect_error() . '</td></tr>');
+}
+
+// Sanitize input parameters (only after connection is established)
 function sanitize($conn, $param) {
     return $param === null ? null : mysqli_real_escape_string($conn, $param);
 }
@@ -17,14 +25,6 @@ $runtime_results_html = sanitize($conn, $_GET['runtime_results'] ?? 'Both');
 $compiler_html = sanitize($conn, $_GET['compiler_name'] ?? 'All');
 $language_html = sanitize($conn, $_GET['language'] ?? 'Both');
 $system_html = sanitize($conn, $_GET['test_system'] ?? 'All');
-
-// Create connection
-$conn = mysqli_connect($dbhost, $dbuser, $dbpass, $db);
-
-// Check connection
-if (!$conn) {
-    die('<tr><td colspan="7" class="text-center text-danger">Connection failed: ' . mysqli_connect_error() . '</td></tr>');
-}
 
 // Build SQL query with prepared statement placeholders
 $sql = "SELECT * FROM Results WHERE ";
