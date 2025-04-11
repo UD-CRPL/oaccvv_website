@@ -193,6 +193,11 @@
                             <option value="DARWIN">DARWIN</option>
                           </select>
                         </td>
+                        <!-- Add this after your filter options -->
+
+                        <td>
+                          <button id="resetFilters" class="btn btn-sm btn-secondary">Reset Filters</button>
+                        </td>
                     </tbody>
                   </table>
                 </div>
@@ -264,56 +269,84 @@
                   <!-- </div> -->
                 </div>
 
+                // Replace the entire script section
+
                 <script>
-                  // Document ready function to initialize the page
                   $(document).ready(function() {
-                    // Initial update
+                    // Show loading indicator on page load
+                    $('#summarydiv, #resultdiv').html('<tr><td colspan="7" class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div></td></tr>');
+                    
+                    // Initialize only once
                     updateResult();
                     
-                    // Tab click event
+                    // Clean tab click handling
                     $('.nav-tabs a').on('click', function(e) {
-                      // Let Bootstrap handle the tab activation first
-                      setTimeout(function() {
-                        updateResult();
-                      }, 100);
+                      setTimeout(updateResult, 100);
+                    });
+                    
+                    // Add system filter synchronization
+                    $('#System').on('change', function() {
+                      updateResult();
+                    });
+                    
+                    // Reset filters button
+                    $('#resetFilters').on('click', function() {
+                      document.getElementById("name").value = "";
+                      document.getElementById("Compiler_Results").value = "Both";
+                      document.getElementById("Runtime_Results").value = "Both";
+                      document.getElementById("Compiler_Name").value = "All";
+                      document.getElementById("Language").value = "Both";
+                      document.getElementById("System").value = "All";
+                      updateResult();
                     });
                   });
                   
                   function updateResult() {
-                    // Get the values of all four dropdowns
+                    // Get the active tab
+                    var activeTab = $('.nav-tabs .active').text().trim();
+                    
+                    // Show loading indicator
+                    if (activeTab === "Summary") {
+                      $('#summarydiv').html('<tr><td colspan="7" class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div></td></tr>');
+                    } else {
+                      $('#resultdiv').html('<tr><td colspan="7" class="text-center"><div class="spinner-border text-primary" role="status"><span class="sr-only">Loading...</span></div></td></tr>');
+                    }
+                    
+                    // Get filter values
                     var name = document.getElementById("name").value;
                     var compiler_results = document.getElementById("Compiler_Results").value;
                     var runtime_results = document.getElementById("Runtime_Results").value;
                     var compiler = document.getElementById("Compiler_Name").value;
                     var language = document.getElementById("Language").value;
-                    var System = document.getElementById("System").value;
-                    // $('.nav-tabs a').on('shown.bs.tab', function(event){
-                    var x = $('.nav-tabs .active').text();         // active tab
-                    if (x == "Summary") {
-                      $.get('results.php?tab=summary&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
-                        // Update the content of the resultdiv with the retrieved data
-                        console.log('summary tab: compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
-                        $('#summarydiv').html(data);
-                      }); 
-                    } else {
-                      $.get('results.php?tab=results&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
-                        // Update the content of the resultdiv with the retrieved data
-                        console.log('results tab: compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
-                        $('#resultdiv').html(data);
-                      }); 
-                    }
+                    var system = document.getElementById("System").value;
+                    
+                    // Build query string
+                    var queryString = 'results.php?tab=' + 
+                                    (activeTab === "Summary" ? 'summary' : 'results') + 
+                                    '&name=' + encodeURIComponent(name) + 
+                                    '&compiler_results=' + encodeURIComponent(compiler_results) + 
+                                    '&runtime_results=' + encodeURIComponent(runtime_results) + 
+                                    '&compiler_name=' + encodeURIComponent(compiler) + 
+                                    '&language=' + encodeURIComponent(language) + 
+                                    '&test_system=' + encodeURIComponent(system);
+                    
+                    // Perform AJAX request
+                    $.ajax({
+                      url: queryString,
+                      type: 'GET',
+                      success: function(data) {
+                        if (activeTab === "Summary") {
+                          $('#summarydiv').html(data || '<tr><td colspan="7" class="text-center">No matching results found</td></tr>');
+                        } else {
+                          $('#resultdiv').html(data || '<tr><td colspan="7" class="text-center">No matching results found</td></tr>');
+                        }
+                      },
+                      error: function() {
+                        var targetDiv = activeTab === "Summary" ? '#summarydiv' : '#resultdiv';
+                        $(targetDiv).html('<tr><td colspan="7" class="text-center text-danger">Error loading data. Please try again.</td></tr>');
+                      }
+                    });
                   }
-                  //$('.collapse').on('show.bs.collapse', function () {
-                  //  $('.collapse.in').collapse('hide');
-                  //});
-                  // $('.nav-tabs .active').on('shown.bs.tab', function(event){
-                  //   updateResult();
-                  // });
-                  $('.nav-tabs a').on('shown.bs.tab', function (e) {
-                    updateResult();
-                  });
-
-                  updateResult();
                 </script>
                 <!-- footer -->
                 <footer class="section pb-4">
