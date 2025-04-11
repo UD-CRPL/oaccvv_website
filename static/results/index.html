@@ -152,9 +152,9 @@
                           <span class="label label-primary">Compiler</span>
                           <select class="radio-inline " id="Compiler_Name" onchange="updateResult()">
                             <option value="All">Choose from</option>
-                            <option value="Cray 15_0_1">Cray 19_0_0</option>
-                            <option value="Cray 15_0_1">Cray 18_0_1</option>
-                            <option value="Cray 15_0_1">Cray 17_0_0</option>
+                            <option value="Cray 19_0_0">Cray 19_0_0</option>
+                            <option value="Cray 18_0_1">Cray 18_0_1</option>
+                            <option value="Cray 17_0_0">Cray 17_0_0</option>
                             <option value="Cray 15_0_1">Cray 15_0_1</option>
                             <option value="Cray 15_0_0">Cray 15_0_0</option>
                             <option value="Cray 14_0_3">Cray 14_0_3</option>
@@ -265,6 +265,19 @@
                 </div>
 
                 <script>
+                  // Document ready function to initialize the page
+                  $(document).ready(function() {
+                    // Initial update
+                    updateResult();
+                    
+                    // Tab click event
+                    $('.nav-tabs a').on('click', function(e) {
+                      // Let Bootstrap handle the tab activation first
+                      setTimeout(function() {
+                        updateResult();
+                      }, 100);
+                    });
+                  });
                   
                   function updateResult() {
                     // Get the values of all four dropdowns
@@ -278,18 +291,17 @@
                     var x = $('.nav-tabs .active').text();         // active tab
                     if (x == "Summary") {
                       $.get('results.php?tab=summary&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
-                      // Update the content of the resultdiv with the retrieved data
-                      console.log('compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
-                      $('#summarydiv').html(data);
-                    }); 
+                        // Update the content of the resultdiv with the retrieved data
+                        console.log('summary tab: compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
+                        $('#summarydiv').html(data);
+                      }); 
                     } else {
                       $.get('results.php?tab=results&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
-                      // Update the content of the resultdiv with the retrieved data
-                      console.log('compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
-                      $('#resultdiv').html(data);
-                    }); 
+                        // Update the content of the resultdiv with the retrieved data
+                        console.log('results tab: compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
+                        $('#resultdiv').html(data);
+                      }); 
                     }
-                  // });
                   }
                   //$('.collapse').on('show.bs.collapse', function () {
                   //  $('.collapse.in').collapse('hide');
