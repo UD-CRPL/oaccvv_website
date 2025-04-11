@@ -87,73 +87,49 @@
           <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#results">Results</a></li>
         </ul>
 
-        <!-- Filter Controls -->
-        <div class="row mt-3">
-          <div class="col-md-3"><input type="text" class="form-control" id="name" placeholder="Search Tests" oninput="updateResult()"></div>
-          <div class="col-md-2"><select class="form-control" id="Compiler_Results" onchange="updateResult()">
-            <option value="Both">Compiler Results</option><option>Pass</option><option>Fail</option></select></div>
-          <div class="col-md-2"><select class="form-control" id="Runtime_Results" onchange="updateResult()">
-            <option value="Both">Runtime Results</option><option>Pass</option><option>Fail</option></select></div>
-          <div class="col-md-2"><select class="form-control" id="Compiler_Name" onchange="updateResult()">
-            <option value="All">Compiler</option>
-            <option value="Cray 19_0_0">Cray 19_0_0</option>
-            <option value="Cray 18_0_1">Cray 18_0_1</option>
-            <option value="Cray 17_0_0">Cray 17_0_0</option>
-          </select></div>
-          <div class="col-md-2"><select class="form-control" id="Language" onchange="updateResult()">
-            <option value="Both">Language</option><option value="c">C</option><option value="F90">F90</option></select></div>
-          <div class="col-md-1"><select class="form-control" id="System" onchange="updateResult()">
-            <option value="All">System</option><option value="Frontier">Frontier</option><option value="Perlmutter">Perlmutter</option><option value="DARWIN">DARWIN</option></select></div>
-        </div>
-
-        <!-- Tab Content -->
-        <div class="tab-pane active" id="summary" role="tabpanel">
-          <table class="table table-striped">
-            <thead><tr><th>#</th><th>Test Name</th><th>System Name</th><th>NVC 23_1</th><th>GCC 12_2</th><th>Cray 19_0_0</th><th>Clacc #4879e9</th></tr></thead>
-            <tbody id="summarydiv"></tbody>
-          </table>
-        </div>
-          <div class="tab-pane" id="results" role="tabpanel">
-            <table class="table table-striped">
-              <thead><tr><th>#</th><th>Source Code</th><th>Test Name</th><th>Test System</th><th>Compiler Name</th><th>Compiler Result</th><th>Runtime Result</th></tr></thead>
-              <tbody id="resultdiv"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="section pb-4">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-md-8 text-md-left text-center">
-            <p class="mb-md-0 mb-4">&copy; 2022; Theme made for OpenACC V&amp;V</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- JS Logic -->
-    <script>
-      function updateResult() {
-        const name = document.getElementById("name").value;
-        const compiler_results = document.getElementById("Compiler_Results").value;
-        const runtime_results = document.getElementById("Runtime_Results").value;
-        const compiler = document.getElementById("Compiler_Name").value;
-        const language = document.getElementById("Language").value;
-        const system = document.getElementById("System").value;
-        const activeTab = document.querySelector('.nav-tabs .active').textContent;
-
-        const tab = activeTab === "Summary" ? "summary" : "results";
-        const target = tab === "summary" ? "#summarydiv" : "#resultdiv";
-
-        const url = `results.php?tab=${tab}&name=${name}&compiler_results=${compiler_results}&runtime_results=${runtime_results}&compiler_name=${compiler}&language=${language}&test_system=${system}`;
-
-        fetch(url).then(res => res.text()).then(data => {
-          document.querySelector(target).innerHTML = data;
-        });
-      }
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane" id="results" role="tabpanel">
+                    <table data-toggle="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Source Code</th>
+                          <th>Test Name</th>
+                          <th>Test System</th>
+                          <th>Compiler Name</th>
+                          <th>Compiler Result</th>
+                          <th>Runtime Result</th>
+                        </tr>
+                      </thead>
+                      <tbody id="resultdiv" style="padding-top: 50px;">
+                        <!-- <div id="resultdiv"></div> -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="tab-pane active" id="summary" role="tabpanel">
+                    <table data-toggle="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>Test Name</th>
+                          <th>System Name</th>
+                          <th>NVC 23_1 CR</th>
+                          <th>NVC 23_1 RR</th>
+                          <th>GCC 12_2 CR</th>
+                          <th>GCC 12_2 RR</th>
+                          <th>Cray 19_0_0 CR</th>
+                          <th>Cray 19_0_0 RR</th>
+                          <th>Clacc #4879e9 CR</th>
+                          <th>Clacc #4879e9 RR</th>
+                        </tr>
+                      </thead>
+                      <tbody id="summarydiv" style="padding-top: 50px;">
+                         <!-- <div id="resultdiv"></div>  -->
+                      </tbody> 
+                    </table> 
+                  <!-- </div> -->
+                </div>
 
       document.querySelectorAll('.nav-tabs a').forEach(tab => {
         tab.addEventListener('shown.bs.tab', updateResult);
