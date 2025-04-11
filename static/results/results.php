@@ -135,18 +135,29 @@ function results_html($no, $demono, $test_name, $compiler, $system, $compilerres
 
 }
 
-function summary_html($my_dict) {
-    $compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
-
-    // initialize a counter for the serial number column
+function summary_html($my_dict, $compiler_filter) {
+    // Determine which compilers to display based on filter
+    $all_compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
+    
+    // If a specific compiler is selected, only show that one
+    $compilers = ($compiler_filter != "All") 
+        ? array($compiler_filter) 
+        : $all_compilers;
+    
+    // Generate header HTML
+    $header = "<tr><th>#</th><th>Test Name</th><th>System Name</th>";
+    foreach ($compilers as $compiler) {
+        $header .= "<th>{$compiler}</th>";
+    }
+    $header .= "</tr>";
+    
+    // Generate body HTML
+    $body = "";
     $serial_number = 1;
-    // iterate through the $my_dict array and populate the table rows
     foreach ($my_dict as $test_name => $system_data) {
         foreach ($system_data as $system_name => $compiler_data) {
-            // initialize arrays to store the combined results for each compiler
             $combined_results = array();
             
-            // extract the results for each compiler and combine them
             foreach ($compilers as $compiler) {
                 if (isset($compiler_data[$compiler])) {
                     // Only show "Pass" if both CR and RR pass, otherwise show "Fail"
@@ -161,21 +172,24 @@ function summary_html($my_dict) {
                 }
             }
             
-            // insert the data into HTML table cells using the echo statement
-            echo "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
+            $body .= "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
             foreach ($compilers as $compiler) {
-                echo "<td>{$combined_results[$compiler]}</td>";
+                $body .= "<td>{$combined_results[$compiler]}</td>";
             }
-            echo "</tr>";
+            $body .= "</tr>";
             
-            // increment the serial number counter
             $serial_number++;
         }
     }
+    
+    // Return both header and body as JSON
+    return json_encode(array(
+        'header' => $header,
+        'body' => $body
+    ));
 }
 
 if ($tab == "summary") {
-    // One or more variables are empty, so don't execute the SQL query
     $number = 1;
     $my_dict = array();
     while ($row = $result->fetch_assoc()) {
@@ -197,11 +211,11 @@ if ($tab == "summary") {
             'compiler_result' => $compilerresult,
             'runtime_result' => $runtimeresult
         );
-        // print_r($my_dict[$test_name][$system]);
         $number++;
     }
     
-    summary_html($my_dict);
+    // Pass the compiler filter to the summary_html function
+    echo summary_html($my_dict, $compiler_html);
 } elseif($tab == "results") {
     $number = 1;
     while ($row = $result->fetch_assoc()) {
