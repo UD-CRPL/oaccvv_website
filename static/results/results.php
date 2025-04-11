@@ -144,43 +144,45 @@ function results_html($no, $demono, $test_name, $compiler, $system, $compilerres
 }
 
 function summary_html($my_dict) {
-    $compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
 
-    // initialize a counter for the serial number column
-    $serial_number = 1;
-    // iterate through the $my_dict array and populate the table rows
-    foreach ($my_dict as $test_name => $system_data) {
-        foreach ($system_data as $system_name => $compiler_data) {
-            // initialize arrays to store the combined results for each compiler
-            $combined_results = array();
-            
-            // extract the results for each compiler and determine the combined result
-            foreach ($compilers as $compiler) {
-                if (isset($compiler_data[$compiler])) {
-                    $compiler_result = $compiler_data[$compiler]['compiler_result'];
-                    $runtime_result = $compiler_data[$compiler]['runtime_result'];
+$compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
+
+// initialize a counter for the serial number column
+$serial_number = 1;
+// iterate through the $my_dict array and populate the table rows
+foreach ($my_dict as $test_name => $system_data) {
+    foreach ($system_data as $system_name => $compiler_data) {
+        // initialize arrays to store the results for each compiler
+        $compiler_results = array();
+        $runtime_results = array();
+        
+        // extract the results for each compiler and store in the arrays
+        foreach ($compilers as $compiler) {
+            if (isset($compiler_data[$compiler])) {
+                $result = $compiler_data[$compiler]['compiler_result'];
+                    $compiler_results[$compiler] = $result == "Pass" ? 
+                        '<span style="color: green; font-weight: bold;">' . $result . '</span>' : 
+                        '<span style="color: red; font-weight: bold;">' . $result . '</span>';
                     
-                    // Only show Pass if both compiler and runtime passed
-                    if ($compiler_result == "Pass" && $runtime_result == "Pass") {
-                        $combined_results[$compiler] = '<span style="color: green; font-weight: bold;">Pass</span>';
-                    } else {
-                        $combined_results[$compiler] = '<span style="color: red; font-weight: bold;">Fail</span>';
-                    }
-                } else {
-                    $combined_results[$compiler] = '-';
-                }
+                    $result = $compiler_data[$compiler]['runtime_result'];
+                    $runtime_results[$compiler] = $result == "Pass" ? 
+                        '<span style="color: green; font-weight: bold;">' . $result . '</span>' : 
+                        '<span style="color: red; font-weight: bold;">' . $result . '</span>';
+            } else {
+                $compiler_results[$compiler] = '-';
+                $runtime_results[$compiler] = '-';
             }
-            
-            // insert the data into HTML table cells using the echo statement
-            echo "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
-            foreach ($compilers as $compiler) {
-                echo "<td>{$combined_results[$compiler]}</td>";
-            }
-            echo "</tr>";
-            
-            // increment the serial number counter
-            $serial_number++;
         }
+        
+        // insert the data into HTML table cells using the echo statement
+        echo "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
+        foreach ($compilers as $compiler) {
+            echo "<td>{$compiler_results[$compiler]}</td><td>{$runtime_results[$compiler]}</td>";
+        }
+        echo "</tr>";
+        
+        // increment the serial number counter
+        $serial_number++;
     }
 }
 

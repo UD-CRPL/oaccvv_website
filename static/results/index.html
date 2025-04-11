@@ -263,22 +263,6 @@
                 </div>
 
                 <script>
-                  // Set the default system to PerlFron when on summary tab
-                  $(document).ready(function() {
-                    if ($('.nav-tabs .active').text().trim() == "Summary") {
-                      document.getElementById("System").value = "PerlFron";
-                      updateResult();
-                    }
-                  });
-                  
-                  $('.nav-tabs a').on('shown.bs.tab', function (e) {
-                    var activeTab = $(e.target).text().trim();
-                    if (activeTab == "Summary") {
-                      document.getElementById("System").value = "PerlFron";
-                    }
-                    updateResult();
-                  });
-                  
                   function updateResult() {
                     // Get the values of all four dropdowns
                     var name = document.getElementById("name").value;
