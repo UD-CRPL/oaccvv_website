@@ -136,60 +136,42 @@ function results_html($no, $demono, $test_name, $compiler, $system, $compilerres
 }
 
 function summary_html($my_dict) {
-//     echo '<tr data-toggle="collapse" class="accordion-toggle">
-//             <td>' . $no . '</td>
-//             <td>' . $test_name . '</td>
-//             <td>' . $system . '</td>
-//             <td>' . $compiler . '</td>
-//             <td>' . $compilerresult . '</td>
-//             <td>' . $runtimeresult . '</td>
-// </tr>';
-$compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 15_0_0', 'Clacc #4879e9');
+    $compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
 
-// generate the HTML table header
-// echo '<div class="tab-pane active" id="summary" role="tabpanel">
-//         <table data-toggle="table">
-//             <thead>
-//                 <tr><table><tr><th>#</th><th>Test Name</th><th>System Name</th>';
-//                 foreach ($compilers as $compiler) {
-//                     echo "<th>{$compiler} CR</th><th>{$compiler} RR</th>";
-//                 }
-//         echo "</tr></thead>";
-
-// initialize a counter for the serial number column
-$serial_number = 1;
-// iterate through the $my_dict array and populate the table rows
-foreach ($my_dict as $test_name => $system_data) {
-    foreach ($system_data as $system_name => $compiler_data) {
-        // initialize arrays to store the results for each compiler
-        $compiler_results = array();
-        $runtime_results = array();
-        
-        // extract the results for each compiler and store in the arrays
-        foreach ($compilers as $compiler) {
-            if (isset($compiler_data[$compiler])) {
-                $compiler_results[$compiler] = $compiler_data[$compiler]['compiler_result'];
-                $runtime_results[$compiler] = $compiler_data[$compiler]['runtime_result'];
-            } else {
-                $compiler_results[$compiler] = '-';
-                $runtime_results[$compiler] = '-';
+    // initialize a counter for the serial number column
+    $serial_number = 1;
+    // iterate through the $my_dict array and populate the table rows
+    foreach ($my_dict as $test_name => $system_data) {
+        foreach ($system_data as $system_name => $compiler_data) {
+            // initialize arrays to store the combined results for each compiler
+            $combined_results = array();
+            
+            // extract the results for each compiler and combine them
+            foreach ($compilers as $compiler) {
+                if (isset($compiler_data[$compiler])) {
+                    // Only show "Pass" if both CR and RR pass, otherwise show "Fail"
+                    if ($compiler_data[$compiler]['compiler_result'] == 'Pass' && 
+                        $compiler_data[$compiler]['runtime_result'] == 'Pass') {
+                        $combined_results[$compiler] = 'Pass';
+                    } else {
+                        $combined_results[$compiler] = 'Fail';
+                    }
+                } else {
+                    $combined_results[$compiler] = '-';
+                }
             }
+            
+            // insert the data into HTML table cells using the echo statement
+            echo "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
+            foreach ($compilers as $compiler) {
+                echo "<td>{$combined_results[$compiler]}</td>";
+            }
+            echo "</tr>";
+            
+            // increment the serial number counter
+            $serial_number++;
         }
-        
-        // insert the data into HTML table cells using the echo statement
-        echo "<tr><td>{$serial_number}</td><td>{$test_name}</td><td>{$system_name}</td>";
-        foreach ($compilers as $compiler) {
-            echo "<td>{$compiler_results[$compiler]}</td><td>{$runtime_results[$compiler]}</td>";
-        }
-        echo "</tr>";
-        
-        // increment the serial number counter
-        $serial_number++;
     }
-}
-
-// close the HTML table
-// ec
 }
 
 if ($tab == "summary") {

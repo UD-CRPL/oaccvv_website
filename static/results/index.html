@@ -5,20 +5,28 @@
     <title>Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="Hugo 0.92.0" />
-    <meta name="description" content="Results - OpenACC V&amp;V ">
-    <!-- ** CSS Plugins Needed for the Project ** -->
-    <!-- Bootstrap -->
+    <meta name="description" content="Results - OpenACC V&amp;V">
+
+    <!-- CSS Plugins -->
     <link rel="stylesheet" href="https://crpl.cis.udel.edu/oaccvv/plugins/bootstrap/bootstrap.min.css">
-    <!-- themefy-icon -->
     <link rel="stylesheet" href="https://crpl.cis.udel.edu/oaccvv/plugins/themify-icons/themify-icons.css">
-    <!--Favicon-->
+    <link rel="stylesheet" href="https://crpl.cis.udel.edu/oaccvv/css/style.min.css">
     <link rel="icon" href="https://crpl.cis.udel.edu/oaccvv/images/favicon.png" type="image/x-icon">
-    <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
-    <!-- PDF.js -->
+    <link href="../css/third_party/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/results.css" rel="stylesheet">
+
+    <!-- JavaScript Plugins -->
+    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/jquery/jquery-1.12.4.js"></script>
+    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/jquery/jquery-ui.js"></script>
+    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/match-height/jquery.matchHeight-min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.js"></script>
-    <script src="js/third_party/jquery-2.x.min.js"></script>
+    <script src="../js/third_party/jquery-2.x.min.js"></script>
+    <script src="../results/results.js"></script>
+
+    <!-- Angular & 3rd Party Dependencies -->
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../bower_components/angular-animate/angular-animate.min.js"></script>
     <script src="../bower_components/angular-touch/angular-touch.min.js"></script>
@@ -29,33 +37,7 @@
     <script src="../bower_components/ansi-to-html/ansi2html.js"></script>
     <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../bower_components/moment/min/moment.min.js"></script>
-    <link href="../css/third_party/bootstrap.min.css" rel="stylesheet">
-    <link href="../css/results.css" rel="stylesheet">
-    <script src="../results/results.js"></script>
-    <style>
-      :root {
-        --primary-color: #122654;
-        --body-color: #f9f9f9;
-        --text-color: #636363;
-        --text-color-dark: #242738;
-        --white-color: #fff;
-        --light-color: #f8f9fa;
-        --font-family: Lato;
-        --dark-blue: #122654;
-      }
-    </style>
-    <!-- Main Stylesheet -->
-    <link href="https://crpl.cis.udel.edu/oaccvv/css/style.min.css" rel="stylesheet" media="screen" />
-    <!-- ** JS Plugins Needed for the Project ** -->
-    <!-- jquiry -->
-    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/jquery/jquery-1.12.4.js"></script>
-    <!-- jquary ui -->
-    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/jquery/jquery-ui.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/bootstrap/bootstrap.min.js"></script>
-    <!-- match-height JS -->
-    <script src="https://crpl.cis.udel.edu/oaccvv/plugins/match-height/jquery.matchHeight-min.js"></script>
-    <!-- create /layouts/partials/overrides/header.html in your own theme or root directory to add your custom content here -->
+
     <meta name="twitter:title" content="Results" />
     <meta name="twitter:description" content="Most recent V&amp;V execution" />
     <meta property="og:title" content="Results" />
@@ -63,166 +45,47 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://crpl.cis.udel.edu/oaccvv/results/" />
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Results" />
-    <meta name="twitter:description" content="Most recent V&amp;V execution" />
   </head>
   <body>
-    <!-- header -->
+    <noscript>
+      <div class="alert alert-warning text-center">JavaScript is required to view and filter results.</div>
+    </noscript>
+
+    <!-- Header -->
     <header class="shadow-bottom sticky-top bg-white">
       <nav class="navbar navbar-expand-md navbar-light">
         <div class="container px-2 px-md-0">
           <a class="navbar-brand px-2" href="../">
             <img class="img-fluid" src="../images/OpenACCVVdark.png" alt="OpenACC V&amp;V">
           </a>
-          <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse text-center" id="navigation">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/about/publications/">Publications</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/archive">Results</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/github">Github</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/contact">Contact</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" href="https://crpl.cis.udel.edu">CRPL</a>
-              </li>
+              <li class="nav-item"><a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv">Home</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/about">About</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/about/publications/">Publications</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="https://crpl.cis.udel.edu/oaccvv/results">Results</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="https://github.com/OpenACCUserGroup/OpenACCV-V">Github</a></li>
+              <li class="nav-item"><a class="nav-link text-dark" href="https://crpl.cis.udel.edu">CRPL</a></li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    </style>
-    <section class="section pb-0">
+
+    <main class="section pb-0">
       <div class="container">
-        <div class="row">
-          <!-- <div class="col-12"> -->
-            <h2 class="section-title text-primary">Results</h2>
-            <!-- <div id="accordion"></div>
-            <div class="container">
-              <div class="row"> -->
-                <div class="col-lg-12"> 
-                  <table class="table-fixed">
-                   <div class="row messages">
-                   <div class="col">
-                   <div class="alert alert-info alert-sm">These results were last updated April 2025</div>
-                   <div class="alert alert-info alert-sm">To get a quick overview of the results, please refer to the Summary tab. For in-depth analysis of runtime errors and other details, please check out the Results tab. The filter functionality only works on the Results tab.</div>
-                    <!-- <thread>
-                      <tr>
-                        <th>Filter results</th>
-                      </tr>
-                    </thread> -->
-                    <tbody>
-                      <td>Filter results</td>
-                        <td>
-                          <input type="text" class="form-control" id="name" oninput="updateResult()" placeholder="Search Tests">
-                        </td>
-                      
-                      
-                        <td>
-                          <span class="label label-primary ">Compiler results (CR)</span>
-                          <select class="radio-inline " id="Compiler_Results" onchange="updateResult()">
-                            <option value="Both">Choose from</option>
-                            <option value="Pass">Pass</option>
-                            <option value="Fail">Fail</option>
-                          </select>
-                        </td>
-                        <td>
-                          <span class="label label-primary ">Runtime results (RR)</span>
-                          <select class="radio-inline " id="Runtime_Results" onchange="updateResult()">
-                            <option value="Both">Choose from</option>
-                            <option value="Pass">Pass</option>
-                            <option value="Fail">Fail</option>
-                          </select>
-                        </td>
-                        <td>
-                          <span class="label label-primary">Compiler</span>
-                          <select class="radio-inline " id="Compiler_Name" onchange="updateResult()">
-                            <option value="All">Choose from</option>
-                            <option value="Cray 15_0_1">Cray 19_0_0</option>
-                            <option value="Cray 15_0_1">Cray 18_0_1</option>
-                            <option value="Cray 15_0_1">Cray 17_0_0</option>
-                            <option value="Cray 15_0_1">Cray 15_0_1</option>
-                            <option value="Cray 15_0_0">Cray 15_0_0</option>
-                            <option value="Cray 14_0_3">Cray 14_0_3</option>
-                            <option value="GCC 12_2">GCC 12_2</option>
-                            <option value="GCC 12_1">GCC 12_1</option>
-                            <option value="GCC 11_2">GCC 11_2</option>
-                            <option value="GCC 11_1">GCC 11_1</option>
-                            <option value="GCC 10_3">GCC 10_3</option>
-                            <option value="GCC 10_2">GCC 10_2</option>
-                            <option value="nvc 23_9">NVHPC 23_9</option>
-                            <option value="nvc 23_7">NVHPC 23_7</option>
-                            <option value="nvc 23_1">NVHPC 23_1</option>
-                            <option value="nvc 22_7">NVHPC 22_7</option>
-                            <option value="nvc 22_5">NVHPC 22_5</option>
-                            <option value="nvc 22_2">NVHPC 22_2</option>
-                            <option value="nvc 21_11">NVHPC 21_11</option>
-                            <option value="nvc 21_9">NVHPC 21_9</option>
-                            <option value="nvc 21_7">NVHPC 21_7</option>
-                            <option value="Clacc #4879e9">Clacc #4879e9</option>
-                          </select>
-                        </td>
-                        <td>
-                          <span class="label label-primary">Language</span>
-                          <select class="radio-inline " id="Language" onchange="updateResult()">
-                            <option value="Both">Choose from</option>
-                            <option value="c">C</option>
-                            <option value="F90">F90</option>
-                          </select>
-                        </td>
-                        <td>
-                          <span class="label label-primary">System</span>
-                          <select class="radio-inline " id="System" onchange="updateResult()">
-                            <option value="All">Choose from</option>
-                            <option value="Frontier">Frontier</option>
-                            <option value="Perlmutter">Perlmutter</option>
-                            <option value="DARWIN">DARWIN</option>
-                          </select>
-                        </td>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            <!-- </div></div></section> -->
-               <!-- <table data-toggle="table">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Source Code</th>
-                      <th>Test Name</th>
-                      <th>Test System</th>
-                      <th>Compiler Name</th>
-                      <th>Compiler Result</th>
-                      <th>Runtime Result</th>
-                    </tr>
-                  </thead>
-                  <tbody id="resultdiv" style="padding-top: 50px;">
-                   // <div id="resultdiv"></div>
-                  </tbody>
-                </table> -->
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item">
-                    <a class="nav-link active" data-toggle="tab" href="#summary" role="tab">Summary</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#results" role="tab">Results</a>
-                  </li>
-                </ul>
+        <h2 class="section-title text-primary">Results</h2>
+        <div class="alert alert-info alert-sm">These results were last updated April 2025</div>
+        <div class="alert alert-info alert-sm">To get a quick overview of the results, please refer to the Summary tab. For in-depth analysis, please check the Results tab. Filtering works only on the Results tab.</div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#summary">Summary</a></li>
+          <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#results">Results</a></li>
+        </ul>
 
                 <!-- Tab panes -->
                 <div class="tab-content">
@@ -268,59 +131,11 @@
                   <!-- </div> -->
                 </div>
 
-                <script>
-                  function updateResult() {
-                    // Get the values of all four dropdowns
-                    var name = document.getElementById("name").value;
-                    var compiler_results = document.getElementById("Compiler_Results").value;
-                    var runtime_results = document.getElementById("Runtime_Results").value;
-                    var compiler = document.getElementById("Compiler_Name").value;
-                    var language = document.getElementById("Language").value;
-                    var System = document.getElementById("System").value;
-                    // $('.nav-tabs a').on('shown.bs.tab', function(event){
-                    var x = $('.nav-tabs .active').text();         // active tab
-                    if (x == "Summary") {
-                      $.get('results.php?tab=summary&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
-                      // Update the content of the resultdiv with the retrieved data
-                      console.log('compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
-                      $('#summarydiv').html(data);
-                    }); 
-                    } else {
-                      $.get('results.php?tab=results&name=' + name + '&compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System, function(data) {
-                      // Update the content of the resultdiv with the retrieved data
-                      console.log('compiler_results=' + compiler_results + '&runtime_results=' + runtime_results + '&compiler_name=' + compiler + '&language=' + language + '&test_system=' + System);
-                      $('#resultdiv').html(data);
-                    }); 
-                    }
-                  // });
-                  }
-                  //$('.collapse').on('show.bs.collapse', function () {
-                  //  $('.collapse.in').collapse('hide');
-                  //});
-                  // $('.nav-tabs .active').on('shown.bs.tab', function(event){
-                  //   updateResult();
-                  // });
-                  $('.nav-tabs a').on('shown.bs.tab', function (e) {
-                    updateResult();
-                  });
+      document.querySelectorAll('.nav-tabs a').forEach(tab => {
+        tab.addEventListener('shown.bs.tab', updateResult);
+      });
 
-                  updateResult();
-                </script>
-                <!-- footer -->
-                <footer class="section pb-4">
-                  <div class="container">
-                    <div class="row align-items-center">
-                      <div class="col-md-8 text-md-left text-center">
-                        <p class="mb-md-0 mb-4">Copyright © 2022; Theme made for OpenACC V&amp;V</p>
-                      </div>
-                      <div class="col-md-4 text-md-right text-center">
-                        <ul class="list-inline"></ul>
-                      </div>
-                    </div>
-                  </div>
-                </footer>
-                <!-- /footer -->
-                <!-- Main Script -->
-                <script src="https://crpl.cis.udel.edu/oaccvv/js/script.min.js"></script>
+      updateResult();
+    </script>
   </body>
 </html>
