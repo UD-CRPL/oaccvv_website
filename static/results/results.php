@@ -98,9 +98,8 @@ function results_html($no, $demono, $test_name, $compiler, $system, $compilerres
               <td>' . $test_name . '</td>
               <td>' . $system . '</td>
               <td>' . $compiler . '</td>
-              <td>' . $compilerresult_styled . '</td>
-              <td>' . $runtimeresult_styled . '</td>
-</tr>  <td>' . $runtimeresult . '</td>
+              <td>' . $compilerresult . '</td>
+              <td>' . $runtimeresult . '</td>
 </tr>
 
         <tr>
@@ -177,15 +176,8 @@ foreach ($my_dict as $test_name => $system_data) {
         // extract the results for each compiler and store in the arrays
         foreach ($compilers as $compiler) {
             if (isset($compiler_data[$compiler])) {
-                $result = $compiler_data[$compiler]['compiler_result'];
-                $compiler_results[$compiler] = $result == "Pass" ? 
-                    '<span style="color: green; font-weight: bold;">' . $result . '</span>' : 
-                    '<span style="color: red; font-weight: bold;">' . $result . '</span>';
-                
-                $result = $compiler_data[$compiler]['runtime_result'];
-                $runtime_results[$compiler] = $result == "Pass" ? 
-                    '<span style="color: green; font-weight: bold;">' . $result . '</span>' : 
-                    '<span style="color: red; font-weight: bold;">' . $result . '</span>';
+                $compiler_results[$compiler] = $compiler_data[$compiler]['compiler_result'];
+                $runtime_results[$compiler] = $compiler_data[$compiler]['runtime_result'];
             } else {
                 $compiler_results[$compiler] = '-';
                 $runtime_results[$compiler] = '-';
@@ -202,7 +194,6 @@ foreach ($my_dict as $test_name => $system_data) {
         // increment the serial number counter
         $serial_number++;
     }
-}
 }
 
 // close the HTML table
