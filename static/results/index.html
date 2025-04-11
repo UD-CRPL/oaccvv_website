@@ -118,7 +118,7 @@
                   <table class="table-fixed">
                    <div class="row messages">
                    <div class="col">
-                   <div class="alert alert-info alert-sm">These results were last reviewed March 6, 2024</div>
+                   <div class="alert alert-info alert-sm">These results were last updated April 2025</div>
                    <div class="alert alert-info alert-sm">To get a quick overview of the results, please refer to the Summary tab. For in-depth analysis of runtime errors and other details, please check out the Results tab. The filter functionality only works on the Results tab.</div>
                     <!-- <thread>
                       <tr>
@@ -152,6 +152,8 @@
                           <span class="label label-primary">Compiler</span>
                           <select class="radio-inline " id="Compiler_Name" onchange="updateResult()">
                             <option value="All">Choose from</option>
+                            <option value="Cray 15_0_1">Cray 19_0_0</option>
+                            <option value="Cray 15_0_1">Cray 18_0_1</option>
                             <option value="Cray 15_0_1">Cray 17_0_0</option>
                             <option value="Cray 15_0_1">Cray 15_0_1</option>
                             <option value="Cray 15_0_0">Cray 15_0_0</option>
@@ -186,11 +188,9 @@
                           <span class="label label-primary">System</span>
                           <select class="radio-inline " id="System" onchange="updateResult()">
                             <option value="All">Choose from</option>
+                            <option value="Frontier">Frontier</option>
                             <option value="Perlmutter">Perlmutter</option>
                             <option value="DARWIN">DARWIN</option>
-                            <option value="Crusher">Crusher</option>
-                            <option value="Summit">Summit</option>
-                            <option value="Frontier">Frontier</option>
                           </select>
                         </td>
                     </tbody>

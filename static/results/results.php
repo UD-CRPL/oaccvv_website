@@ -59,7 +59,8 @@ if (!$conn) {
     $sql .= "AND runtime_result = '$runtime_results_html' ";
     }
     if ($system_html == "All") {
-    $sql .= "AND (system_name = 'Perlmutter' OR system_name = 'DARWIN' OR system_name = 'Summit' OR system_name = 'Crusher') ORDER BY test_name ASC;";
+    $sql .= "AND (system_name = 'Perlmutter' OR system_name = 'DARWIN' OR system_name = 'Frontier') ORDER BY test_name ASC;";
+    // $sql .= "AND (system_name = 'Perlmutter' OR system_name = 'DARWIN' OR system_name = 'Summit' OR system_name = 'Crusher') ORDER BY test_name ASC;";
     } else {
     $sql .= "AND system_name LIKE '$system_html'; ";
     }// Execute the SQL query here

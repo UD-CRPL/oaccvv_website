@@ -129,19 +129,13 @@ weight = 4
 
 [[Languages.en.menu.main]]
 name = "Github"
-url = "github"
+url = "https://github.com/OpenACCUserGroup/OpenACCV-V"
 weight = 5
-
-# Dropdown menu
-[[Languages.en.menu.main]]
-name = "Contact"
-url = "contact"
-weight = 6
 
 [[Languages.en.menu.main]]
 name = "CRPL"
 url = "https://crpl.cis.udel.edu"
-weight = 7
+weight = 6
 #hasChildren = true
 
   # [[Languages.en.menu.main]]

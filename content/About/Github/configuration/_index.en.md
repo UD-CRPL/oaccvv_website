@@ -169,14 +169,3 @@ Also, if you would like to specify a prefix on the executable, you can use:
 
 This can be used to test host-fallback on gcc for example with RuntimePrefix:ACC_DEVICE_TYPE=None
 
-#### Having issues?
-
-Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenACCV-V/issues) to report any issues that you are having with out test suite
-
-##### Found a bug or have a comment?
-
-Please use the issue tracker above or any bugs or comments. **Please make sure that you are logged into github with your username**. We encourage people's participation. The success of this test suite comes from the effort of the OpenACC community.
-
-#### Note
-
-Thanks for contributing to our project. By contributing to our project you agree to our [license agreement](/license) and allow us to use and distribute your code.

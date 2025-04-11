@@ -75,15 +75,3 @@ CMakeLists for the OpenACC V&V suite so it can be built as part of the LLVM test
 all C and C++ source files of the OpenACC V&V suite, and
 compile and run them. Running llvm-lit (or ”make check”)
 will require a compatible accelerator on the running machine.
-
-#### Having issues?
-
-Please use our [Github issue tracker](https://github.com/OpenACCUserGroup/OpenACCV-V/issues) to report any issues that you are having with out test suite
-
-##### Found a bug or have a comment?
-
-Please use the issue tracker above or any bugs or comments. **Please make sure that you are logged into github with your username**. We encourage people's participation. The success of this test suite comes from the effort of the OpenACC community.
-
-#### Note
-
-Thanks for contributing to our project. By contributing to our project you agree to our [license agreement](/license) and allow us to use and distribute your code.
