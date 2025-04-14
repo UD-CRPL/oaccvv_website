@@ -184,7 +184,7 @@ function summary_html($my_dict) {
         return;
     }
 
-    $compilers = array('nvc 23_1', 'GCC 12_2', 'Cray 19_0_0', 'Clacc #4879e9');
+    $compilers = array('nvc 24_5', 'Cray 19_0_0', 'GCC 12_2' , 'Clacc #4879e9');
     $serial_number = 1;
     
     foreach ($my_dict as $test_name => $system_data) {
