@@ -21,11 +21,13 @@ Current Team:
 * Sunita Chandrasekaran
 
 Contributors:
-* Joel Denny
-* Tobias Burnus
 * Jeff Larkin
 * Mathew Colgrove
 * Christian Munley
+* Thomas Schwinge
+* Tobias Burnus
+* Joel Denny
+
 
 Previous:
 * Kyle Friedline
