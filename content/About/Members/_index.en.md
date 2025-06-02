@@ -17,6 +17,7 @@ Continuous developers and maintainers of this project
 
 Current Team:
 * Aaron Jarmusch
+* Nathan Graddon
 * Zackariah Sollenberger
 * Sunita Chandrasekaran
 
