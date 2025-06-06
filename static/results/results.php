@@ -187,9 +187,9 @@ function summary_html($my_dict) {
     $defaultCompilers = array('nvc 25_3', 'Cray 19_0_0', 'GCC 14_1' , 'Clacc #4879e9');
     $requestedCompiler = $_GET['compiler_name'] ?? null;
     $serial_number = 1;
-    if ($requestedCompiler && $requestedCompiler !== 'ALL'){
+    if ($requestedCompiler && $requestedCompiler !== 'All'){
         $compilers = array($requestedCompiler);
-    }else{
+    } else {
         $compilers = $defaultCompilers;
     }
     foreach ($my_dict as $test_name => $system_data){
