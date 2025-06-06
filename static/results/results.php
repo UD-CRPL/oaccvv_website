@@ -184,13 +184,17 @@ function summary_html($my_dict) {
         return;
     }
 
-    $compilers = array('nvc 24_5', 'Cray 19_0_0', 'GCC 12_2' , 'Clacc #4879e9');
+    $defaultCompilers = array('nvc 25_3', 'Cray 19_0_0', 'GCC 14_1' , 'Clacc #4879e9');
+    $requestedCompiler = $_GET['compiler_name'] ?? null;
     $serial_number = 1;
-    
-    foreach ($my_dict as $test_name => $system_data) {
-        foreach ($system_data as $system_name => $compiler_data) {
+    if ($requestedCompiler && $requestedCompiler !== 'ALL'){
+        $compilers = array($requestedCompiler);
+    }else{
+        $compilers = $defaultCompilers;
+    }
+    foreach ($my_dict as $test_name => $system_data){
+        foreach ($system_data as $system_name => $compiler_data){
             $combined_results = array();
-            
             foreach ($compilers as $compiler) {
                 if (isset($compiler_data[$compiler])) {
                     $compiler_result = $compiler_data[$compiler]['compiler_result'];
@@ -211,8 +215,12 @@ function summary_html($my_dict) {
                  '<td>', htmlspecialchars($test_name), '</td>',
                  '<td>', htmlspecialchars($system_name), '</td>';
                  
-            foreach ($compilers as $compiler) {
-                echo '<td>', $combined_results[$compiler], '</td>';
+            if(count($compilers) === 1){
+                echo '<td>' . $combined_results[$compilers[0]]. '</td>';
+                echo '<td></td><td></td><td></td>';
+            }else{
+                foreach ($compilers as $compiler){
+                    echo '<td>' . $combined_results[$compiler] . '</td>';                }
             }
             
             echo '</tr>';
