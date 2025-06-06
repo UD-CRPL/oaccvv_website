@@ -258,10 +258,10 @@
                           <th>#</th>
                           <th>Test Name</th>
                           <th>System Name</th>
-                          <th>NVC 25_3</th>
-                          <th>Cray 19_0_0</th>
-                          <th>GCC 14_1</th>
-                          <th>Clacc #4879e9</th>
+                          <th><span id="compiler-col-1">NVC 25_3</span></th>
+                          <th><span id="compiler-col-2">Cray 19_0_0</span></th>
+                          <th><span id="compiler-col-3">GCC 14_1</span></th>
+                          <th><span id="compiler-col-4">Clacc #4879e9</span></th>
                         </tr>
                       </thead>
                       <tbody id="summarydiv" style="padding-top: 50px;">
@@ -341,6 +341,23 @@
                         } else {
                           $('#resultdiv').html(data || '<tr><td colspan="7" class="text-center">No matching results found</td></tr>');
                         }
+
+                        const selectedCompiler = document.getElementById("Compiler_Name").value;
+
+                        if (selectedCompiler !== "All") {
+                          document.getElementById("compiler-col-1").textContent = selectedCompiler;
+                          document.getElementById("compiler-col-2").textContent = "";
+                          document.getElementById("compiler-col-3").textContent = "";
+                          document.getElementById("compiler-col-4").textContent = "";
+                        } else {
+                          document.getElementById("compiler-col-1").textContent = "NVC 25_3";
+                          document.getElementById("compiler-col-2").textContent = "Cray 19_0_0";
+                          document.getElementById("compiler-col-3").textContent = "GCC 14_1";
+                          document.getElementById("compiler-col-4").textContent = "Clacc #4879e9";
+                        }
+
+                        document.querySelector('.section-title').textContent = 
+                          selectedCompiler !== "All" ? "Results for " + selectedCompiler : "Results";
                       },
                       error: function() {
                         var targetDiv = activeTab === "Summary" ? '#summarydiv' : '#resultdiv';
