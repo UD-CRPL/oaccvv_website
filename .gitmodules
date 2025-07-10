@@ -1,0 +1,3 @@
+[submodule "themes/generator"]
+	path = themes/generator
+	url = https://github.com/UD-CRPL/Directive-Based-VV-Generator.git
