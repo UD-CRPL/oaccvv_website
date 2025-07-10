@@ -22,6 +22,31 @@
 {{ end }}
 {{ end }}
 
+{{ if .Site.Params.tool.enable }}
+{{ with .Site.Params.tool }}
+{{ "<!-- tool section -->" | safeHTML }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <div class="px-4 py-5 bg-light shadow text-center">
+          {{ with .icon}}<i class="{{.}} icon text-primary d-block mb-4" style="font-size: 3rem;"></i>{{end}}
+          <h3 class="mb-3">{{ .title | markdownify }}</h3>
+          <p class="mb-4">{{ .description | markdownify }}</p>
+          {{ if .button.enable }}
+          {{ with .button }}
+          <a href="{{ .link | relLangURL }}" class="btn btn-primary btn-lg">{{ .label }}</a>
+          {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ "<!-- /tool section -->" | safeHTML }}
+{{ end }}
+{{ end }}
+
   {{ "<!-- topics -->" | safeHTML }}
   <section style="padding-top: 00px;" class="section">
     <div class="container">

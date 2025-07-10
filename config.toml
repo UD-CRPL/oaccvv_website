@@ -94,6 +94,16 @@ enable = true
 title = "Welcome"
 content = "This website contains information about the OpenACC V&V testsuite. This work is in collaboration with OpenACC/NVIDIA/Mentor Graphics. Any project related questions, please mail Aaron Jarmusch (Jarmusch@udel.edu) or Sunita Chandrasekaran (schandra@udel.edu)."
 
+# tool
+enable = true
+title = "OpenACC V&V Tool"
+description = "Access our comprehensive OpenACC Verification and Validation tool for testing your OpenACC implementations."
+icon = "ti-tools"
+[params.tool.button]
+enable = true
+label = "Launch Tool"
+link = "/static/results/generator"
+
 # call to action
 [Languages.en.params.cta]
 enable = true
