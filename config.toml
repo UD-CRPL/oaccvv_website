@@ -97,8 +97,8 @@ content = "This website contains information about the OpenACC V&V testsuite. Th
 # tool
 [Languages.en.params.tool]
 enable = true
-title = "OpenACC V&V Tool"
-description = "Access our comprehensive OpenACC Verification and Validation tool for testing your OpenACC implementations."
+title = "OpenACC V&V JSON Results Tool"
+description = "Access our comprehensive OpenACC Verification and Validation tool for comparing or reviewing your OpenACC implementations."
 icon = "ti-tools"
 [Languages.en.params.tool.button]
 enable = true
