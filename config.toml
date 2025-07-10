@@ -103,7 +103,7 @@ icon = "ti-tools"
 [Languages.en.params.tool.button]
 enable = true
 label = "Launch Tool"
-link = "/generator/index.html" 
+link = "/generator" 
 
 # call to action
 [Languages.en.params.cta]
