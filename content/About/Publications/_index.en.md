@@ -17,6 +17,12 @@ Following, a list of publications (both internal and in peer reviewed conference
 
 ## Papers
 
+*
+
+*
+
+*
+
 * Jarmusch, A. M., Liu, A., Munley, C., Horta, D., Ravichandran, V., Denny, J., & Chandrasekaran, S. (2022). [Analysis of Validating and Verifying OpenACC Compilers 3.0 and Above.](https://arxiv.org/abs/2208.13071) Presentation given at the SC22 Conference. [SC22](https://sc22.supercomputing.org/)
 * Jarmusch, A., Baker, N. & Chandrasekaran, Su. (2021). [Using IU Jetstream for OpenMP offloading and OpenACC testsuites.](content/About/Publications/_index.files/SC@!_Submission.pdf) Presentation given at the Jetstream Research Experience for Undergraduates Program Presentation Session. Also Presented at the Super Computer Conference in 2021. [SC21](https://sc21.supercomputing.org/presentation/?id=spostu106&sess=sess243)
 * Friedline K., Chandrasekaran S., Lopez M.G., Hernandez O. (2017) [&#34;OpenACC 2.5 Validation Testsuite Targeting Multiple Architectures&#34;](https://link.springer.com/chapter/10.1007/978-3-319-67630-2_39). In: Kunkel J., Yokota R., Taufer M., Shalf J. (eds) High Performance Computing. ISC High Performance 2017. Lecture Notes in Computer Science, vol 10524. Springer, Cham. DOI: 0.1007/ 978-3-319-67630-2_39
