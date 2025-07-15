@@ -92,18 +92,18 @@ placeholder = "Have a question? Just ask here or enter terms"
 [Languages.en.params.welcome]
 enable = true
 title = "Welcome"
-content = "This website contains information about the OpenACC V&V testsuite. This work is in collaboration with OpenACC/NVIDIA/Mentor Graphics. Any project related questions, please mail Aaron Jarmusch (Jarmusch@udel.edu) or Sunita Chandrasekaran (schandra@udel.edu)."
+content = "This website contains how-to-run & visualize the OpenACC V&V testsuite. This work is in collaboration with OpenACC/NVIDIA/BayLibre/HPE. Please go to [Getting Started](https://github.com/OpenACCUserGroup/OpenACCV-V?tab=readme-ov-file#getting-started)  for next steps. Any project related questions, please mail Aaron Jarmusch (Jarmusch@udel.edu) or Sunita Chandrasekaran (schandra@udel.edu)."
 
 # tool
-[Languages.en.params.tool]
-enable = true
-title = "OpenACC V&V JSON Results Tool"
-description = "Access our comprehensive OpenACC Verification and Validation tool for comparing or reviewing your OpenACC implementations."
-icon = "ti-tools"
-[Languages.en.params.tool.button]
-enable = true
-label = "Launch Tool"
-link = "/generator" 
+# [Languages.en.params.tool]
+#enable = true
+#title = "OpenACC V&V JSON Results Tool"
+#description = "Access our comprehensive OpenACC Verification and Validation tool for comparing or reviewing your OpenACC implementations."
+#icon = "ti-tools"
+#[Languages.en.params.tool.button]
+#enable = true
+#label = "Launch Tool"
+#link = "/generator" 
 
 # call to action
 [Languages.en.params.cta]
