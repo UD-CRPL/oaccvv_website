@@ -137,6 +137,19 @@ weight = 3
 name = "Results"
 url = "results"
 weight = 4
+hasChildren = true
+
+  [[Languages.en.menu.main]]
+  parent = "results"
+  name = "Monthly Runs"
+  url = "results"
+  weight = 1
+
+  [[Languages.en.menu.main]]
+  parent = "results"
+  name = "Vis. Tool"
+  url = "generator"
+  weight = 2
 
 [[Languages.en.menu.main]]
 name = "Github"
