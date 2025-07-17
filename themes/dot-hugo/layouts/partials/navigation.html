@@ -22,20 +22,35 @@
     <div class="collapse navbar-collapse text-center" id="navigation">
       <ul class="navbar-nav ml-auto">
         {{ range site.Menus.main }}
+          {{ $isActive := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
           {{ if .HasChildren }}
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle {{ if $.IsHome }}text-white{{ else }}text-dark{{ end }}" href="#" id="navbarDropdown-{{ .Identifier }}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a
+                class="nav-link dropdown-toggle {{ if $.IsHome }}text-white{{ else }}text-dark{{ end }} {{ if $isActive }}active{{ end }}"
+                href="#"
+                id="navbarDropdown-{{ .Identifier }}"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
                 {{ .Name }}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown-{{ .Identifier }}">
                 {{ range .Children }}
-                  <a class="dropdown-item" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+                  {{ $childActive := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+                  <a class="dropdown-item {{ if $childActive }}active{{ end }}" href="{{ .URL | absLangURL }}">
+                    {{ .Name }}
+                  </a>
                 {{ end }}
               </div>
             </li>
           {{ else }}
             <li class="nav-item">
-              <a class="nav-link {{ if $.IsHome }}text-white{{ else }}text-dark{{ end }}" href="{{ .URL | absLangURL }}">{{ .Name }}</a>
+              <a
+                class="nav-link {{ if $.IsHome }}text-white{{ else }}text-dark{{ end }} {{ if $isActive }}active{{ end }}"
+                href="{{ .URL | absLangURL }}">
+                {{ .Name }}
+              </a>
             </li>
           {{ end }}
         {{ end }}
