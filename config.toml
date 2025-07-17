@@ -137,7 +137,7 @@ weight = 3
 name = "Results"
 url = "results"
 weight = 4
-hasChildren = true
+# hasChildren = true
 
   [[Languages.en.menu.main]]
   parent = "results"
