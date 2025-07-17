@@ -137,19 +137,19 @@ weight = 3
 name = "Results"
 url = "results"
 weight = 4
-# hasChildren = true
+hasChildren = true
 
-  # [[Languages.en.menu.main]]
-  # parent = "Results"
-  # name = "Summary Table"
-  # url = "results"
-  # weight = 1
+  [[Languages.en.menu.main]]
+  parent = "Results"
+  name = "Summary Table"
+  url = "results"
+  weight = 1
 
-  # [[Languages.en.menu.main]]
-  # parent = "Results"
-  # name = "V&V Generator"
-  # url = "generator/index.html"
-  # weight = 2
+  [[Languages.en.menu.main]]
+  parent = "Results"
+  name = "V&V Generator"
+  url = "generator/index.html"
+  weight = 2
 
 [[Languages.en.menu.main]]
 name = "Github"
