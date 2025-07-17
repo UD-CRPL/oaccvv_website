@@ -137,11 +137,6 @@ weight = 3
 name = "Results"
 url = "results"
 weight = 4
-
-[[Languages.en.menu.main]]
-name = "Results"
-url = "results"
-weight = 4
 hasChildren = true
 
   [[Languages.en.menu.main]]
