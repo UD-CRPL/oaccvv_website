@@ -140,13 +140,13 @@ weight = 4
 # hasChildren = true
 
   # [[Languages.en.menu.main]]
-  # parent = "Results"
+  # parent = "results"
   # name = "Summary Table"
   # url = "results"
   # weight = 1
 
   # [[Languages.en.menu.main]]
-  # parent = "Results"
+  # parent = "results"
   # name = "V&V Generator"
   # url = "generator/index.html"
   # weight = 2
