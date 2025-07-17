@@ -1,0 +1,10 @@
+:root {
+  --primary-color: {{ .Site.Params.primary_color }};
+  --body-color: {{ .Site.Params.body_color }};
+  --text-color: {{ .Site.Params.text_color }};
+  --text-color-dark: {{ .Site.Params.text_color_dark }};
+  --white-color: {{ .Site.Params.white_color }};
+  --light-color: {{ .Site.Params.light_color }};
+  --font-family: {{ .Site.Params.font_family }};
+  --dark-blue: {{ .Site.Params.dark_blue }};
+}

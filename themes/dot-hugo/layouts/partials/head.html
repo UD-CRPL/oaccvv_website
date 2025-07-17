@@ -46,18 +46,8 @@
   <script src="/results/results.js"></script>
 
   
-  <style>
-  :root {
-    --primary-color: {{ with .Site.Params.primary_color }}"{{ . }}"{{ else }}"#000000"{{ end }};
-    --body-color: {{ with .Site.Params.body_color }}"{{ . }}"{{ else }}"#ffffff"{{ end }};
-    --text-color: {{ with .Site.Params.text_color }}"{{ . }}"{{ else }}"#333333"{{ end }};
-    --text-color-dark: {{ with .Site.Params.text_color_dark }}"{{ . }}"{{ else }}"#111111"{{ end }};
-    --white-color: {{ with .Site.Params.white_color }}"{{ . }}"{{ else }}"#ffffff"{{ end }};
-    --light-color: {{ with .Site.Params.light_color }}"{{ . }}"{{ else }}"#f5f5f5"{{ end }};
-    --font-family: {{ with .Site.Params.font_family }}"{{ . }}"{{ else }}"Lato, sans-serif"{{ end }};
-    --dark-blue: {{ with .Site.Params.dark_blue }}"{{ . }}"{{ else }}"#122654"{{ end }};
-  }
-  </style>
+  {{ $vars := resources.Get "css/variables.css" | resources.ExecuteAsTemplate "css/variables.css" . | minify }}
+  <link rel="stylesheet" href="{{ $vars.RelPermalink }}">
 
 {{ "<!-- Main Stylesheet -->" | safeHTML }}
 {{ $css := resources.Get "css/style.css" | minify }}
