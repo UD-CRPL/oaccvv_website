@@ -1,21 +1,23 @@
 /* --- NAV OVERRIDES --- */
 
-/* Space below dropdown */
+/* Lower the dropdown so it doesn’t sit directly on the trigger */
 .navbar-nav .dropdown-menu {
-  margin-top: 0.4rem;
+  margin-top: 0.65rem;  /* increase spacing below 'Results' */
   border: 1px solid #122654;
+  z-index: 1050; /* ensures it appears above other content */
 }
 
-/* Highlight dropdown items */
+/* Highlight dropdown items on hover */
 .navbar-nav .dropdown-menu .dropdown-item:hover,
 .navbar-nav .dropdown-menu .dropdown-item:focus {
   background-color: #122654;
   color: #fff;
 }
 
-/* Active sub-item highlight */
+/* Active sub-item */
 .navbar-nav .dropdown-menu .dropdown-item.active {
   background-color: #122654;
   color: #fff;
   font-weight: 600;
 }
+
