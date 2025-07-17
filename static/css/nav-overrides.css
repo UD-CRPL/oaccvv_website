@@ -1,29 +1,21 @@
 /* --- NAV OVERRIDES --- */
 
-/* Add a little vertical gap so the dropdown sits slightly below the parent nav link */
+/* Space below dropdown */
 .navbar-nav .dropdown-menu {
-  margin-top: 0.4rem;            /* adjust as desired */
-  border: 1px solid #122654;     /* subtle outline in your primary color */
+  margin-top: 0.4rem;
+  border: 1px solid #122654;
 }
 
-/* Highlight dropdown items on hover/focus */
+/* Highlight dropdown items */
 .navbar-nav .dropdown-menu .dropdown-item:hover,
 .navbar-nav .dropdown-menu .dropdown-item:focus {
   background-color: #122654;
   color: #fff;
 }
 
-/* Show which sub-item is active (Bootstrap adds .active; reinforce visually) */
+/* Active sub-item highlight */
 .navbar-nav .dropdown-menu .dropdown-item.active {
   background-color: #122654;
   color: #fff;
   font-weight: 600;
-}
-
-/* Highlight the top-level menu when it's active or open */
-.navbar-nav .nav-item.dropdown.show > .nav-link,
-.navbar-nav .nav-link.active {
-  color: #122654 !important;
-  font-weight: 700;
-  border-bottom: 2px solid #122654;
 }
