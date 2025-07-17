@@ -4,7 +4,7 @@
 .navbar-nav .dropdown-menu {
   margin-top: 0.65rem;  /* increase spacing below 'Results' */
   border: 1px solid #122654;
-  z-index: 1200; /* ensures it appears above other content */
+  z-index: 900; /* ensures it appears above other content */
 }
 
 /* Highlight dropdown items on hover */
