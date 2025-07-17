@@ -34,7 +34,7 @@
                 aria-expanded="false">
                 {{ .Name }}
               </a>
-              <div class="dropdown-menu mt-6" aria-labelledby="navbarDropdown-{{ .Identifier }}">
+              <div class="dropdown-menu custom-offset" aria-labelledby="navbarDropdown-{{ .Identifier }}">
                 {{ range .Children }}
                   {{ $childActive := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
                   <a class="dropdown-item {{ if $childActive }}active{{ end }}" href="{{ .URL | absLangURL }}">
