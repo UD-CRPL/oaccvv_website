@@ -17,7 +17,7 @@ Following, a list of publications (both internal and in peer reviewed conference
 
 ## Papers
 
-*Sollenberger, Z., Patel, R., Ali Zada, S., Chandrasekaran S., [LLM4VV: Evaluating Cutting-Edge LLMs for Generation and Evaluation of Directive-Based Parallel Programming Model Compiler Tests.](https://arxiv.org/abs/2507.21447), UNDER REVIEW, 2025
+* Sollenberger, Z., Patel, R., Ali Zada, S., Chandrasekaran S., [LLM4VV: Evaluating Cutting-Edge LLMs for Generation and Evaluation of Directive-Based Parallel Programming Model Compiler Tests.](https://arxiv.org/abs/2507.21447), UNDER REVIEW, 2025
 * Munley, C., Jarmusch, A., & Chandrasekaran, S. (2024). [LLM4VV: Developing LLM-driven testsuite for compiler validation.](https://doi.org/10.1016/j.future.2024.05.034) *Future Generation Computer Systems*, Volume 160, pp. 1–13. Elsevier.
 * Sollenberger, Z., Patel, J., Munley, C., Jarmusch, A., & Chandrasekaran, S. (2025). [LLM4VV: Exploring LLM-as-a-Judge for Validation and Verification Testsuites.](https://dl.acm.org/doi/10.1109/SCW63240.2024.00238) Presentation given at the SC24 Conference. *Proceedings of the SC'24 Workshops of the International Conference on High Performance Computing, Network, Storage, and Analysis (SC-W '24)*. IEEE Press, 1885–1893[SC24](https://sc24.supercomputing.org/)
 * Jarmusch, A. M., Liu, A., Munley, C., Horta, D., Ravichandran, V., Denny, J., & Chandrasekaran, S. (2022). [Analysis of Validating and Verifying OpenACC Compilers 3.0 and Above.](https://arxiv.org/abs/2208.13071) Presentation given at the SC22 Conference. [SC22](https://sc22.supercomputing.org/)
