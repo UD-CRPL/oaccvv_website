@@ -115,7 +115,7 @@
                   <table class="table-fixed">
                    <div class="row messages">
                    <div class="col">
-                   <div class="alert alert-info alert-sm">These results were last reviewed May, 2025</div>
+                   <div class="alert alert-info alert-sm">These results were last reviewed Feb, 2026</div>
                     <div class="alert alert-info alert-sm">
                       To get a quick overview of the results, please refer to the Summary tab. For an all-in-one experience, including detailed 
                       results, runtime/compiler error breakdowns, and seamless JSON file parsing, try our Directive Based V&V Results Generator: 
@@ -168,6 +168,9 @@
                             <option value="GCC 11_1">GCC 11_1</option>
                             <option value="GCC 10_3">GCC 10_3</option>
                             <option value="GCC 10_2">GCC 10_2</option>
+                            <option value="nvc 25_11">NVHPC 25_11</option>
+                            <option value="nvc 25_9">NVHPC 25_9</option>
+                            <option value="nvc 25_7">NVHPC 25_7</option>
                             <option value="nvc 25_5">NVHPC 25_5</option>
                             <option value="nvc 25_3">NVHPC 25_3</option>
                             <option value="nvc 25_1">NVHPC 25_1</option>
@@ -265,7 +268,7 @@
                           <th>#</th>
                           <th>Test Name</th>
                           <th>System Name</th>
-                          <th><span id="compiler-col-1">NVC 25_5</span></th>
+                          <th><span id="compiler-col-1">NVC 25_11</span></th>
                           <th><span id="compiler-col-2">Cray 19_0_0</span></th>
                           <th><span id="compiler-col-3">GCC 15_2</span></th>
                           <th><span id="compiler-col-4">Clacc #4879e9</span></th>
@@ -357,7 +360,7 @@
                           document.getElementById("compiler-col-3").textContent = "";
                           document.getElementById("compiler-col-4").textContent = "";
                         } else {
-                          document.getElementById("compiler-col-1").textContent = "NVC 25_5";
+                          document.getElementById("compiler-col-1").textContent = "NVC 25_11";
                           document.getElementById("compiler-col-2").textContent = "Cray 19_0_0";
                           document.getElementById("compiler-col-3").textContent = "GCC 15_2";
                           document.getElementById("compiler-col-4").textContent = "Clacc #4879e9";
