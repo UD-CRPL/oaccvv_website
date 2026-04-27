@@ -1,5 +1,5 @@
 ---
-title: "Publications"
+title: "Publications & Slides"
 lastmod: 2022-01-25T10:42:26+06:00
 weight: 4
 draft: false
@@ -15,7 +15,7 @@ Following, a list of publications (both internal and in peer reviewed conference
 {{% /notice %}} -->
 
 
-## Papers
+## Publication
 * Sollenberger, Z., Patel, R., Ali Zada, S., & Chandrasekaran, S. (2025). [LLM4VV:: Evaluating Cutting-Edge LLMs for Generation and Evaluation of Directive-Based Parallel Programming Model Compiler Tests.](https://ieeexplore.ieee.org/document/11433358) In IEEE 32nd International Conference on High Performance Computing, Data, and Analytics (HiPC), Hyderabad, India, 2025, pp. 333-342, DOI: 10.1109/HiPC66333.2025.00041.
 * Munley, C., Jarmusch, A., & Chandrasekaran, S. (2024). [LLM4VV: Developing LLM-driven testsuite for compiler validation.](https://doi.org/10.1016/j.future.2024.05.034) *Future Generation Computer Systems*, Volume 160, pp. 1–13. Elsevier.
 * Sollenberger, Z., Patel, J., Munley, C., Jarmusch, A., & Chandrasekaran, S. (2025). [LLM4VV: Exploring LLM-as-a-Judge for Validation and Verification Testsuites.](https://dl.acm.org/doi/10.1109/SCW63240.2024.00238) Presentation given at the SC24 Conference. *Proceedings of the SC'24 Workshops of the International Conference on High Performance Computing, Network, Storage, and Analysis (SC-W '24)*. IEEE Press, 1885–1893[SC24](https://sc24.supercomputing.org/)
@@ -28,11 +28,13 @@ Following, a list of publications (both internal and in peer reviewed conference
 
 {{% notice info%}}
 [LLM4VV: Developing LLM-Driven Testsuite for Compiler Validation](_index.files/Developing_LLM_Driven_Testsuite_for_Compiler_Validation_FGCS_JOURNAL_Oct2023.pdf)
-{{% /notice %}}
+{{% /notice %}} -->
 
 ## Slides
 
-{{% notice info%}}
+* [Zero to GPU Hero with OpenACC: presented by Aaron Jarmusch, December 2024](Zero%20to%20GPU%20Hero%20with%20OpenACC.pptx.pdf)
+
+<!-- {{% notice info%}}
 [Using IU Jetstream for OpenMP offloading and OpenACC testsuites](https://scholarworks.iu.edu/dspace/handle/2022/26706)\
 \
 [Analysis of Validating and Verifying OpenACC Compilers 3.0 and Above.](https://arxiv.org/abs/2208.13071)
