@@ -1,0 +1,219 @@
+{{ define "main" }}
+<section class="section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h2 class="section-title text-primary">{{ .Title }}</h2>
+        <div class="mb-4">{{ .Content }}</div>
+
+        {{/* The matrix widget. Data is refreshed nightly into /results-data/combined.json
+             by the oaccvv_results pull job; this page only renders it. */}}
+        <div class="vv-results" id="vv">
+          <div class="vv-controls">
+            <input type="search" id="vv-q" placeholder="Search tests…" autocomplete="off">
+            <div class="vv-dd">
+              <button type="button" class="vv-dd-btn" id="vv-dd-btn">Versions ▾</button>
+              <div class="vv-dd-panel" id="vv-dd-panel" hidden>
+                <div class="vv-dd-quick">
+                  <button type="button" data-q="latest">Latest</button>
+                  <button type="button" data-q="all">All</button>
+                  <button type="button" data-q="none">None</button>
+                </div>
+                <div id="vv-dd-list"></div>
+              </div>
+            </div>
+            <label><input type="checkbox" id="vv-fail"> Failures only</label>
+            <label><input type="checkbox" id="vv-pass"> Pass only</label>
+            <span class="vv-count" id="vv-count"></span>
+          </div>
+          <div class="vv-legend" id="vv-legend"></div>
+          <div class="vv-scroll"><table id="vv-tbl"><thead id="vv-head"></thead><tbody id="vv-body"></tbody></table></div>
+          <div class="vv-empty" id="vv-empty">No tests match the current filters.</div>
+          <p class="vv-src" id="vv-src">loading…</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vv-results{--P:#1e9e57;--C:#cf3030;--R:#e07b0a;--E:#a83418;--U:#6f54b8;--X:#aab4bf;--dot:#eef1f4;--navy:#122654;
+    font-size:12px;color:#3a4756}
+  .vv-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:6px 0 10px}
+  .vv-controls input[type=search]{padding:7px 10px;border:1px solid #c6d0d9;border-radius:6px;min-width:220px;font-size:14px}
+  .vv-controls label{display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-size:13px;margin:0}
+  .vv-dd{position:relative;display:inline-block}
+  .vv-dd-btn{padding:7px 12px;border:1px solid #c6d0d9;border-radius:6px;background:#fff;font-size:13px;cursor:pointer}
+  .vv-dd-panel{position:absolute;top:calc(100% + 4px);left:0;z-index:40;background:#fff;border:1px solid #c6d0d9;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.16);padding:8px;min-width:240px;max-height:360px;overflow:auto}
+  .vv-dd-quick{display:flex;gap:6px;margin-bottom:6px;border-bottom:1px solid #eef1f4;padding-bottom:6px}
+  .vv-dd-quick button{flex:1;padding:5px;border:1px solid #d6dee6;border-radius:5px;background:#f6f8fa;font-size:12px;cursor:pointer}
+  .vv-dd-quick button:hover{background:#eaeff4}
+  .vv-dd-grp{margin:7px 0 1px;font-size:13px}
+  .vv-dd-grp label{cursor:pointer}
+  .vv-dd-ver{display:flex;align-items:center;gap:6px;font-size:13px;padding:1px 0 1px 12px;cursor:pointer}
+  .vv-dd-pct{color:#9aa6b2;font-size:11px;margin-left:auto}
+  .vv-count{color:#6b7886;font-size:12.5px}
+  .vv-legend{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:8px;font-size:12px;color:#5b6b7b}
+  .vv-legend span{display:inline-flex;align-items:center;gap:5px}
+  .vv-sw{width:13px;height:13px;border-radius:3px;display:inline-block}
+  .vv-scroll{overflow:auto;max-height:72vh;border:1px solid #e1e6eb;border-radius:8px}
+  .vv-results table{border-collapse:separate;border-spacing:0;margin:0}
+  .vv-results thead th{position:sticky;top:0;z-index:8;background:#eef3f7;border-bottom:1px solid #d6dee6}
+  .vv-results th.test,.vv-results td.test{position:sticky;left:0;z-index:6;background:#fff;text-align:left;
+    min-width:210px;max-width:210px;padding:4px 10px;border-right:2px solid #e1e6eb;border-bottom:1px solid #f0f3f6;
+    font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vv-results thead th.test{z-index:9;background:#eef3f7;vertical-align:bottom;font-weight:600}
+  .vv-results th.run{width:74px;min-width:74px;max-width:74px;padding:5px 3px;border-left:1px solid #e3e9ee;vertical-align:bottom;text-align:center}
+  .vv-results th.run .vn{display:block;font-size:16px;font-weight:700;padding:1px 0;line-height:1.12;white-space:normal}
+  .vv-results th.run .vd{display:block;font-size:14px;font-weight:600;color:#33475b;padding:1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vv-results th.run .pc{display:block;font-size:9px;font-weight:700;padding:1px 0;color:#6b7886}
+  .vv-results td.c{width:74px;min-width:74px;max-width:74px;text-align:center;color:#fff;font-weight:700;
+    border-left:1px solid rgba(255,255,255,.55);border-bottom:1px solid #f0f3f6;cursor:default;font-size:11px}
+  .vv-results .c-P{background:var(--P)} .vv-results .c-C{background:var(--C)} .vv-results .c-R{background:var(--R)}
+  .vv-results .c-E{background:var(--E)} .vv-results .c-U{background:var(--U)} .vv-results .c-X{background:var(--X);color:#37424f}
+  .vv-results .c-dot{background:var(--dot)}
+  .vv-results tbody tr:hover td.test{background:#fff6df}
+  .vv-tip{position:fixed;z-index:50;background:#122654;color:#fff;padding:6px 9px;border-radius:6px;font-size:12px;
+    pointer-events:none;display:none;box-shadow:0 4px 14px rgba(0,0,0,.25);max-width:320px}
+  .vv-empty{display:none;padding:24px;color:#7a8794}
+  .vv-src{color:#9aa6b2;font-size:11px;margin-top:8px}
+</style>
+
+<div class="vv-tip" id="vv-tip"></div>
+<script>
+(function(){
+  var DATA_URL = "../results-data/combined.json";   // page is at /oaccvv/results/ -> /oaccvv/results-data/
+  var FAILSET = {C:1,R:1,E:1,U:1};
+  var NAMES = {nvc:'NVIDIA nvc', GCC:'GNU GCC', Cray:'HPE Cray', Clacc:'Clacc'};   // full compiler names
+  var VCOLOR = {Clacc:'#5b7fb0',Cray:'#7a59a8',GCC:'#2f8f6b',nvc:'#c2722e'};
+  var CLS   = {P:'P',C:'C',R:'R',E:'R',X:'X',U:'U'};        // color class (runtime error+failure share one)
+  var LABEL = {P:'P',C:'CE',R:'RE',E:'RE',X:'X',U:'U'};     // cell text
+  var LEG = [['P','Pass'],['C','CE — Compiler error'],['R','RE — Runtime error / failure'],['X','Excluded'],['U','Unknown']];
+  var D, runs, tests, latest = {}, latestSet = [], selected = {}, vendors = [], styleEl;
+  var $ = function(id){return document.getElementById(id);};
+  var esc = function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var ncmp = function(a,b){return String(a).localeCompare(String(b),undefined,{numeric:true,sensitivity:'base'});};
+  var vname = function(v){return NAMES[v]||v;};
+  var runIdx = function(v){return runs.map(function(r,i){return r.vendor===v?i:-1;}).filter(function(i){return i>=0;});};
+
+  fetch(DATA_URL).then(function(r){return r.json();}).then(init).catch(function(e){
+    $('vv-src').textContent='Could not load results data ('+e+').';
+  });
+
+  function init(d){
+    D=d; runs=d.runs; tests=d.tests;
+    runs.forEach(function(r){ if(vendors.indexOf(r.vendor)<0) vendors.push(r.vendor); });
+    vendors.forEach(function(v){
+      var idx=runIdx(v), mx=idx[0];
+      idx.forEach(function(i){ if(ncmp(runs[i].version,runs[mx].version)>0) mx=i; });
+      latest[v]=runs[mx].version;
+    });
+    latestSet=runs.map(function(r,i){return r.version===latest[r.vendor]?i:-1;}).filter(function(i){return i>=0;});
+
+    $('vv-legend').innerHTML=LEG.map(function(p){return '<span><i class="vv-sw c-'+p[0]+'"></i>'+esc(p[1])+'</span>';}).join('');
+    $('vv-src').textContent='Generated from '+d.generated_from+' · '+tests.length+' tests × '+runs.length+' runs · updated nightly';
+
+    buildVersionDropdown();
+    buildHead(); buildBody();
+    styleEl=document.createElement('style'); document.head.appendChild(styleEl);
+    $('vv-q').addEventListener('input',apply);
+    $('vv-fail').addEventListener('change',function(){ if(this.checked)$('vv-pass').checked=false; apply(); });
+    $('vv-pass').addEventListener('change',function(){ if(this.checked)$('vv-fail').checked=false; apply(); });
+
+    setSelection(latestSet);   // default: newest version per compiler
+  }
+
+  function buildVersionDropdown(){
+    var html='';
+    vendors.forEach(function(v){
+      var idx=runIdx(v).sort(function(a,b){return ncmp(runs[a].version,runs[b].version);});
+      html+='<div class="vv-dd-grp"><label><input type="checkbox" class="vv-grp" data-v="'+esc(v)+'"> <b>'+esc(vname(v))+'</b></label></div>';
+      idx.forEach(function(i){
+        var pct=runs[i].total?Math.round(100*runs[i].pass/runs[i].total)+'%':'';
+        html+='<label class="vv-dd-ver"><input type="checkbox" class="vv-ver" data-i="'+i+'"> '+esc(runs[i].version)+'<span class="vv-dd-pct">'+pct+'</span></label>';
+      });
+    });
+    $('vv-dd-list').innerHTML=html;
+    Array.prototype.forEach.call(document.querySelectorAll('.vv-ver'),function(c){
+      c.addEventListener('change',function(){ selected[+this.getAttribute('data-i')]=this.checked; refreshGroups(); syncSelection(); }); });
+    Array.prototype.forEach.call(document.querySelectorAll('.vv-grp'),function(c){
+      c.addEventListener('change',function(){ var v=this.getAttribute('data-v'),on=this.checked;
+        runs.forEach(function(r,i){ if(r.vendor===v) selected[i]=on; }); refreshChecks(); syncSelection(); }); });
+    Array.prototype.forEach.call(document.querySelectorAll('.vv-dd-quick button'),function(b){
+      b.addEventListener('click',function(){ var q=this.getAttribute('data-q');
+        if(q==='latest') setSelection(latestSet);
+        else if(q==='all') setSelection(runs.map(function(_,i){return i;}));
+        else setSelection([]); }); });
+    $('vv-dd-btn').addEventListener('click',function(e){ e.stopPropagation(); var p=$('vv-dd-panel'); p.hidden=!p.hidden; });
+    document.addEventListener('click',function(e){ var p=$('vv-dd-panel'); if(p&&!p.hidden&&!(e.target.closest&&e.target.closest('.vv-dd'))) p.hidden=true; });
+  }
+
+  function setSelection(arr){ selected={}; arr.forEach(function(i){selected[i]=true;}); refreshChecks(); syncSelection(); }
+  function refreshChecks(){
+    Array.prototype.forEach.call(document.querySelectorAll('.vv-ver'),function(c){ c.checked=!!selected[+c.getAttribute('data-i')]; });
+    refreshGroups();
+  }
+  function refreshGroups(){
+    Array.prototype.forEach.call(document.querySelectorAll('.vv-grp'),function(c){
+      var idx=runIdx(c.getAttribute('data-v')), on=idx.filter(function(i){return selected[i];}).length;
+      c.checked=on===idx.length&&on>0; c.indeterminate=on>0&&on<idx.length; });
+  }
+  function syncSelection(){ $('vv-dd-btn').textContent='Versions ('+visibleRuns().length+') ▾'; apply(); }
+  function visibleRuns(){ var a=[]; runs.forEach(function(r,i){ if(selected[i]) a.push(i); }); return a; }
+
+  function buildHead(){
+    var h='<tr><th class="test">Test ('+tests.length+')</th>';
+    runs.forEach(function(r,i){
+      var pct=r.total?Math.round(100*r.pass/r.total):0, vc=VCOLOR[r.vendor]||'#52606d';
+      h+='<th class="run r'+i+'" style="border-top:3px solid '+vc+'">'+
+         '<span class="vn" style="color:'+vc+'">'+esc(vname(r.vendor))+'</span>'+
+         '<span class="vd" title="'+esc(r.version)+'">'+esc(r.version)+'</span>'+
+         '<span class="pc">'+pct+'%</span></th>';
+    });
+    $('vv-head').innerHTML=h+'</tr>';
+  }
+
+  function buildBody(){
+    var rows=new Array(tests.length);
+    for(var t=0;t<tests.length;t++){
+      var row='<tr data-t="'+t+'"><td class="test" title="'+esc(tests[t])+'">'+esc(tests[t])+'</td>';
+      for(var i=0;i<runs.length;i++){
+        var c=runs[i].cells[t];
+        row+= c==='.' ? '<td class="c c-dot r'+i+'"></td>' : '<td class="c c-'+CLS[c]+' r'+i+'">'+LABEL[c]+'</td>';
+      }
+      rows[t]=row+'</tr>';
+    }
+    $('vv-body').innerHTML=rows.join('');
+    var tip=$('vv-tip'), tb=$('vv-body');
+    tb.addEventListener('mousemove',function(e){
+      var td=e.target.closest ? e.target.closest('td.c') : null; if(!td){tip.style.display='none';return;}
+      var i=td.cellIndex-1, t=+td.parentNode.getAttribute('data-t'), code=runs[i].cells[t];
+      tip.innerHTML='<b>'+esc(tests[t])+'</b><br>'+esc(vname(runs[i].vendor))+' · '+esc(runs[i].version)+'<br>'+D.legend[code];
+      tip.style.display='block'; tip.style.left=Math.min(e.clientX+14,window.innerWidth-330)+'px'; tip.style.top=(e.clientY+16)+'px';
+    });
+    tb.addEventListener('mouseleave',function(){tip.style.display='none';});
+  }
+
+  function apply(){
+    if(!styleEl) return;
+    var vis=visibleRuns(), visSet={}; vis.forEach(function(i){visSet[i]=1;});
+    var css=''; runs.forEach(function(r,i){ if(!visSet[i]) css+='.vv-results .r'+i+'{display:none}'; });
+    styleEl.textContent=css;
+
+    var q=$('vv-q').value.trim().toLowerCase(), failonly=$('vv-fail').checked, passonly=$('vv-pass').checked;
+    var trs=$('vv-body').children, shown=0;
+    for(var t=0;t<tests.length;t++){
+      var ok = !q || tests[t].toLowerCase().indexOf(q)>=0;
+      if(ok && (failonly||passonly)){
+        var hasFail=false, hasPresent=false;
+        for(var k=0;k<vis.length;k++){ var c=runs[vis[k]].cells[t]; if(c!=='.'){ hasPresent=true; if(FAILSET[c]) hasFail=true; } }
+        ok = failonly ? hasFail : (hasPresent && !hasFail);
+      }
+      trs[t].style.display = ok?'':'none'; if(ok) shown++;
+    }
+    $('vv-count').textContent=shown+' / '+tests.length+' tests · '+vis.length+' runs shown';
+    $('vv-empty').style.display=shown?'none':'block';
+  }
+})();
+</script>
+{{ end }}
