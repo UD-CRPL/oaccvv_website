@@ -29,6 +29,7 @@
           <div class="vv-legend" id="vv-legend"></div>
           <div class="vv-scroll"><table id="vv-tbl"><thead id="vv-head"></thead><tbody id="vv-body"></tbody></table></div>
           <div class="vv-empty" id="vv-empty">No tests match the current filters.</div>
+          <div class="vv-detail" id="vv-detail" hidden></div>
           <p class="vv-src" id="vv-src">loading…</p>
         </div>
       </div>
@@ -68,13 +69,22 @@
   .vv-results th.run{width:74px;min-width:74px;max-width:74px;padding:5px 3px;border-left:1px solid #e3e9ee;vertical-align:bottom;text-align:center}
   .vv-results th.run .vn{display:block;font-size:16px;font-weight:700;padding:1px 0;line-height:1.12;white-space:normal}
   .vv-results th.run .vd{display:block;font-size:14px;font-weight:600;color:#33475b;padding:1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vv-results th.run .vs{display:block;font-size:10px;color:#6b7886;padding:0 0 1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .vv-results th.run .pc{display:block;font-size:9px;font-weight:700;padding:1px 0;color:#6b7886}
   .vv-results td.c{width:74px;min-width:74px;max-width:74px;text-align:center;color:#fff;font-weight:700;
     border-left:1px solid rgba(255,255,255,.55);border-bottom:1px solid #f0f3f6;cursor:default;font-size:11px}
   .vv-results .c-P{background:var(--P)} .vv-results .c-C{background:var(--C)} .vv-results .c-R{background:var(--R)}
   .vv-results .c-E{background:var(--E)} .vv-results .c-U{background:var(--U)} .vv-results .c-X{background:var(--X);color:#37424f}
   .vv-results .c-dot{background:var(--dot)}
+  .vv-results td.c.c-C,.vv-results td.c.c-R,.vv-results td.c.c-U{cursor:pointer}
   .vv-results tbody tr:hover td.test{background:#fff6df}
+  .vv-detail{position:relative;margin-top:14px;border:1px solid #d6dee6;border-left:4px solid #122654;border-radius:8px;background:#fff;padding:14px 16px;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+  .vv-detail h4{margin:0 0 2px;font-size:15px;color:#122654;word-break:break-all}
+  .vv-detail-meta{font-size:12.5px;color:#5b6b7b;margin-bottom:10px}
+  .vv-detail-x{position:absolute;top:8px;right:10px;border:0;background:transparent;font-size:22px;line-height:1;cursor:pointer;color:#8a98a6}
+  .vv-d-sec{margin-top:10px}
+  .vv-d-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:#7a8794;margin-bottom:3px}
+  .vv-detail pre{margin:0;background:#0f1b2d;color:#e8eef5;padding:10px 12px;border-radius:6px;font-size:12px;white-space:pre-wrap;word-break:break-word;max-height:300px;overflow:auto}
   .vv-tip{position:fixed;z-index:50;background:#122654;color:#fff;padding:6px 9px;border-radius:6px;font-size:12px;
     pointer-events:none;display:none;box-shadow:0 4px 14px rgba(0,0,0,.25);max-width:320px}
   .vv-empty{display:none;padding:24px;color:#7a8794}
@@ -133,7 +143,7 @@
       html+='<div class="vv-dd-grp"><label><input type="checkbox" class="vv-grp" data-v="'+esc(v)+'"> <b>'+esc(vname(v))+'</b></label></div>';
       idx.forEach(function(i){
         var pct=runs[i].total?Math.round(100*runs[i].pass/runs[i].total)+'%':'';
-        html+='<label class="vv-dd-ver"><input type="checkbox" class="vv-ver" data-i="'+i+'"> '+esc(runs[i].version)+'<span class="vv-dd-pct">'+pct+'</span></label>';
+        html+='<label class="vv-dd-ver"><input type="checkbox" class="vv-ver" data-i="'+i+'"> '+esc(runs[i].machine)+' '+esc(runs[i].version)+'<span class="vv-dd-pct">'+pct+'</span></label>';
       });
     });
     $('vv-dd-list').innerHTML=html;
@@ -171,6 +181,7 @@
       h+='<th class="run r'+i+'" style="border-top:3px solid '+vc+'">'+
          '<span class="vn" style="color:'+vc+'">'+esc(vname(r.vendor))+'</span>'+
          '<span class="vd" title="'+esc(r.version)+'">'+esc(r.version)+'</span>'+
+         '<span class="vs" title="'+esc(r.machine)+'">'+esc(r.machine)+'</span>'+
          '<span class="pc">'+pct+'%</span></th>';
     });
     $('vv-head').innerHTML=h+'</tr>';
@@ -191,10 +202,38 @@
     tb.addEventListener('mousemove',function(e){
       var td=e.target.closest ? e.target.closest('td.c') : null; if(!td){tip.style.display='none';return;}
       var i=td.cellIndex-1, t=+td.parentNode.getAttribute('data-t'), code=runs[i].cells[t];
-      tip.innerHTML='<b>'+esc(tests[t])+'</b><br>'+esc(vname(runs[i].vendor))+' · '+esc(runs[i].version)+'<br>'+D.legend[code];
+      tip.innerHTML='<b>'+esc(tests[t])+'</b><br>'+esc(vname(runs[i].vendor))+' · '+esc(runs[i].machine)+' · '+esc(runs[i].version)+'<br>'+D.legend[code]+(FAILSET[code]?'<br><i>click for failure details</i>':'');
       tip.style.display='block'; tip.style.left=Math.min(e.clientX+14,window.innerWidth-330)+'px'; tip.style.top=(e.clientY+16)+'px';
     });
     tb.addEventListener('mouseleave',function(){tip.style.display='none';});
+    tb.addEventListener('click',function(e){
+      var td=e.target.closest ? e.target.closest('td.c') : null; if(!td) return;
+      var i=td.cellIndex-1, t=+td.parentNode.getAttribute('data-t');
+      if(FAILSET[runs[i].cells[t]]) showDetail(i,t);
+    });
+  }
+
+  var detailCache={};
+  function showDetail(i,t){
+    var run=runs[i], test=tests[t], code=run.cells[t], panel=$('vv-detail');
+    panel.hidden=false;
+    panel.innerHTML='<button class="vv-detail-x" id="vv-detail-x" title="Close">×</button>'+
+      '<h4>'+esc(test)+'</h4>'+
+      '<div class="vv-detail-meta">'+esc(vname(run.vendor))+' · '+esc(run.machine)+' · '+esc(run.version)+' — <b>'+esc(D.legend[code])+'</b></div>'+
+      '<div class="vv-detail-body">Loading…</div>';
+    $('vv-detail-x').addEventListener('click',function(){panel.hidden=true;});
+    panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+    var render=function(det){
+      var d=det&&det[test], body=panel.querySelector('.vv-detail-body');
+      if(!body) return;
+      var sec=function(title,txt){ return txt? '<div class="vv-d-sec"><div class="vv-d-h">'+title+'</div><pre>'+esc(txt)+'</pre></div>':''; };
+      body.innerHTML=(d ? (sec('Compile command',d.command)+sec('Errors',d.errors)+sec('Output',d.output)) : '') || '<em>No failure detail recorded for this result.</em>';
+    };
+    if(detailCache[run.id]) render(detailCache[run.id]);
+    else fetch('../results-data/details/'+encodeURIComponent(run.id)+'.json')
+      .then(function(r){return r.json();})
+      .then(function(det){ detailCache[run.id]=det; render(det); })
+      .catch(function(e){ var b=panel.querySelector('.vv-detail-body'); if(b) b.innerHTML='<em>Could not load details ('+esc(String(e))+').</em>'; });
   }
 
   function apply(){
