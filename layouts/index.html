@@ -5,19 +5,19 @@
 </header>
 
 {{ if .Site.Params.welcome.enable }}{{ with .Site.Params.welcome }}
-<section class="section">
-  <div class="container"><div class="row"><div class="col-12 text-center">
-    <h2 class="mb-4">{{ .title | markdownify }}</h2>
-    <p style="font-size:20px" class="mb-4">{{ .content | markdownify }}</p>
+<section class="section home-tight">
+  <div class="container"><div class="row justify-content-center"><div class="col-lg-10 text-center">
+    <h2 class="mb-2">{{ .title | markdownify }}</h2>
+    <p style="font-size:18px" class="mb-0">{{ .content | markdownify }}</p>
   </div></div></div>
 </section>
 {{ end }}{{ end }}
 
 {{ "<!-- clone the testsuite -->" | safeHTML }}
-<section class="section pt-0">
+<section class="section home-tight pt0">
   <div class="container"><div class="row justify-content-center"><div class="col-lg-9 text-center">
-    <h3 class="mb-3">Get the testsuite</h3>
-    <p class="mb-4 text-muted">Clone the OpenACC V&amp;V testsuite and follow the README to build and run it.</p>
+    <h3 class="mb-2">Get the testsuite</h3>
+    <p class="mb-3 text-muted">Clone the OpenACC V&amp;V testsuite and follow the README to build and run it.</p>
     <div class="clone-box">
       <code id="vv-clone">git clone https://github.com/OpenACCUserGroup/OpenACCV-V.git</code>
       <button type="button" id="vv-clone-btn">Copy</button>
@@ -26,14 +26,14 @@
 </section>
 
 {{ "<!-- latest results summary -->" | safeHTML }}
-<section class="section bg-light">
+<section class="section home-tight bg-light">
   <div class="container">
     <div class="row justify-content-center"><div class="col-12 text-center">
-      <h2 class="section-title">Latest Results</h2>
-      <p class="mb-4" id="vv-sum-sub">&nbsp;</p>
+      <h2 class="section-title mb-2">Latest Results</h2>
+      <p class="mb-3" id="vv-sum-sub">&nbsp;</p>
     </div></div>
     <div id="vv-summary">Loading latest results…</div>
-    <div class="text-center mt-4"><a href="results" class="btn btn-primary">View full results table</a></div>
+    <div class="text-center mt-3"><a href="results" class="btn btn-primary">View full results table</a></div>
   </div>
 </section>
 

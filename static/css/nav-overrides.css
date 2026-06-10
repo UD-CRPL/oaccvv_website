@@ -26,9 +26,13 @@
 }
 
 /* --- BRAND: logo replaced with bold "OpenACC V&V" text --- */
-.navbar-brand{font-weight:800;font-size:1.5rem;letter-spacing:.3px}
+.navbar .navbar-brand{font-weight:900;font-size:2.1rem;letter-spacing:.4px;line-height:1;padding-top:.1rem;padding-bottom:.1rem}
 .navbar-dark .navbar-brand{color:#fff}
 .navbar-light .navbar-brand{color:#122654}
+
+/* --- HOME: tighter section spacing --- */
+.home-tight{padding-top:2.2rem !important;padding-bottom:2.2rem !important}
+.home-tight.pt0{padding-top:0 !important}
 
 /* --- HOME: clone box with copy button --- */
 .clone-box{display:inline-flex;align-items:stretch;max-width:580px;width:100%;border:1px solid #d4dbe2;border-radius:8px;overflow:hidden;background:#0f1b2d}
