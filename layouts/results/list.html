@@ -63,6 +63,8 @@
     min-width:210px;max-width:210px;padding:4px 10px;border-right:2px solid #e1e6eb;border-bottom:1px solid #f0f3f6;
     font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .vv-results thead th.test{z-index:9;background:#eef3f7;vertical-align:bottom;font-weight:600}
+  .vv-results td.test a{color:#122654;text-decoration:none}
+  .vv-results td.test a:hover{text-decoration:underline;color:#1d3a6b}
   .vv-results th.run{width:74px;min-width:74px;max-width:74px;padding:5px 3px;border-left:1px solid #e3e9ee;vertical-align:bottom;text-align:center}
   .vv-results th.run .vn{display:block;font-size:16px;font-weight:700;padding:1px 0;line-height:1.12;white-space:normal}
   .vv-results th.run .vd{display:block;font-size:14px;font-weight:600;color:#33475b;padding:1px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -85,7 +87,8 @@
   var DATA_URL = "../results-data/combined.json";   // page is at /oaccvv/results/ -> /oaccvv/results-data/
   var FAILSET = {C:1,R:1,E:1,U:1};
   var NAMES = {nvc:'NVIDIA nvc', GCC:'GNU GCC', Cray:'HPE Cray', Clacc:'Clacc'};   // full compiler names
-  var VCOLOR = {Clacc:'#5b7fb0',Cray:'#7a59a8',GCC:'#2f8f6b',nvc:'#c2722e'};
+  var VCOLOR = {Clacc:'#5b7fb0',Cray:'#7a59a8',GCC:'#d6a900',nvc:'#74b300'};   // GCC yellow, NVIDIA green
+  var TESTBASE = 'https://github.com/OpenACCUserGroup/OpenACCV-V/blob/master/Tests/';
   var CLS   = {P:'P',C:'C',R:'R',E:'R',X:'X',U:'U'};        // color class (runtime error+failure share one)
   var LABEL = {P:'P',C:'CE',R:'RE',E:'RE',X:'X',U:'U'};     // cell text
   var LEG = [['P','Pass'],['C','CE — Compiler error'],['R','RE — Runtime error / failure'],['X','Excluded'],['U','Unknown']];
@@ -176,7 +179,7 @@
   function buildBody(){
     var rows=new Array(tests.length);
     for(var t=0;t<tests.length;t++){
-      var row='<tr data-t="'+t+'"><td class="test" title="'+esc(tests[t])+'">'+esc(tests[t])+'</td>';
+      var row='<tr data-t="'+t+'"><td class="test" title="'+esc(tests[t])+'"><a href="'+TESTBASE+encodeURIComponent(tests[t])+'" target="_blank" rel="noopener">'+esc(tests[t])+'</a></td>';
       for(var i=0;i<runs.length;i++){
         var c=runs[i].cells[t];
         row+= c==='.' ? '<td class="c c-dot r'+i+'"></td>' : '<td class="c c-'+CLS[c]+' r'+i+'">'+LABEL[c]+'</td>';
