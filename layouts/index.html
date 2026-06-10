@@ -1,0 +1,82 @@
+{{ define "main" }}
+
+<header class="banner {{if .Site.Params.banner.bg_image}}overlay bg-cover{{else}}bg-primary{{end}}" data-background="{{ .Site.Params.banner.bg_image | absURL }}">
+  {{ partialCached "banner.html" . }}
+</header>
+
+{{ if .Site.Params.welcome.enable }}{{ with .Site.Params.welcome }}
+<section class="section">
+  <div class="container"><div class="row"><div class="col-12 text-center">
+    <h2 class="mb-4">{{ .title | markdownify }}</h2>
+    <p style="font-size:20px" class="mb-4">{{ .content | markdownify }}</p>
+  </div></div></div>
+</section>
+{{ end }}{{ end }}
+
+{{ "<!-- clone the testsuite -->" | safeHTML }}
+<section class="section pt-0">
+  <div class="container"><div class="row justify-content-center"><div class="col-lg-9 text-center">
+    <h3 class="mb-3">Get the testsuite</h3>
+    <p class="mb-4 text-muted">Clone the OpenACC V&amp;V testsuite and follow the README to build and run it.</p>
+    <div class="clone-box">
+      <code id="vv-clone">git clone https://github.com/OpenACCUserGroup/OpenACCV-V.git</code>
+      <button type="button" id="vv-clone-btn">Copy</button>
+    </div>
+  </div></div></div>
+</section>
+
+{{ "<!-- latest results summary -->" | safeHTML }}
+<section class="section bg-light">
+  <div class="container">
+    <div class="row justify-content-center"><div class="col-12 text-center">
+      <h2 class="section-title">Latest Results</h2>
+      <p class="mb-4" id="vv-sum-sub">&nbsp;</p>
+    </div></div>
+    <div id="vv-summary">Loading latest results…</div>
+    <div class="text-center mt-4"><a href="results" class="btn btn-primary">View full results table</a></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  var b=document.getElementById('vv-clone-btn');
+  if(b) b.addEventListener('click',function(){
+    var t=document.getElementById('vv-clone').textContent.trim();
+    var done=function(){ b.textContent='Copied'; setTimeout(function(){b.textContent='Copy';},1500); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(t).then(done,done); }
+    else { var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(); }
+  });
+
+  var NAMES={nvc:'NVIDIA nvc',GCC:'GNU GCC',Cray:'HPE Cray',Clacc:'Clacc'};
+  var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var ncmp=function(a,b){return String(a).localeCompare(String(b),undefined,{numeric:true});};
+  fetch('results-data/combined.json').then(function(r){return r.json();}).then(function(d){
+    var runs=d.runs, vendors=[]; runs.forEach(function(r){if(vendors.indexOf(r.vendor)<0)vendors.push(r.vendor);});
+    vendors.sort();
+    var html='';
+    vendors.forEach(function(v){
+      var idx=runs.map(function(r,i){return r.vendor===v?i:-1;}).filter(function(i){return i>=0;});
+      var mx=idx[0]; idx.forEach(function(i){ if(ncmp(runs[i].version,runs[mx].version)>0) mx=i; });
+      var r=runs[mx], cells=r.cells, cnt={P:0,C:0,R:0,X:0,U:0}, present=0;
+      for(var k=0;k<cells.length;k++){ var c=cells[k]; if(c==='.')continue; present++; if(c==='E')c='R'; if(cnt[c]!=null)cnt[c]++; }
+      if(!present) return;
+      var pct=Math.round(100*cnt.P/present);
+      var seg=function(cls,n){ return n? '<span class="'+cls+'" style="width:'+(100*n/present)+'%"></span>':''; };
+      html+='<div class="vv-bar-row">'+
+        '<div class="vv-bar-lab">'+esc(NAMES[v]||v)+'<small>'+esc(r.version)+'</small></div>'+
+        '<div class="vv-bar">'+seg('sP',cnt.P)+seg('sC',cnt.C)+seg('sR',cnt.R)+seg('sU',cnt.U)+seg('sX',cnt.X)+'</div>'+
+        '<div class="vv-bar-pct">'+pct+'%</div></div>';
+    });
+    html+='<div class="vv-sum-legend">'+
+      '<span><i style="background:#1e9e57"></i>Pass</span>'+
+      '<span><i style="background:#cf3030"></i>Compiler error</span>'+
+      '<span><i style="background:#e8820c"></i>Runtime error / failure</span>'+
+      '<span><i style="background:#6f54b8"></i>Unknown</span>'+
+      '<span><i style="background:#cdd5dd"></i>Excluded</span></div>';
+    document.getElementById('vv-summary').innerHTML=html;
+    var sub=document.getElementById('vv-sum-sub'); if(sub) sub.textContent='Pass rate of the newest version of each compiler · '+d.tests.length+' tests · updated nightly';
+  }).catch(function(e){ document.getElementById('vv-summary').textContent='Could not load results ('+e+').'; });
+})();
+</script>
+
+{{ end }}
